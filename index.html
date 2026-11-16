@@ -849,39 +849,27 @@
       // 2. Render Web Projects Grid
       const webProjContainer = document.getElementById('web-projects-grid');
       webProjContainer.innerHTML = resumeData.projects.map((p, idx) => `
-        <article class="group rounded-2xl p-5 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500/60 dark:hover:border-blue-500/50 transition-all shadow-sm hover:shadow-md flex flex-col justify-between gap-4">
+        <article class="group rounded-2xl p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition shadow-sm flex flex-col justify-between gap-4">
           <div class="space-y-2.5">
             <div class="flex items-start justify-between gap-2">
               <div>
-                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white transition">
                   ${p.title[lang]}
                 </h3>
                 <p class="text-xs font-medium text-slate-500 dark:text-slate-400">${p.subtitle[lang]}</p>
               </div>
-              <button onclick="openMdModal(${idx})" class="shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition">
-                ${t.mdBadge}
-              </button>
             </div>
 
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              ${p.desc[lang]}
+              ${p.desc ? p.desc[lang] : ''}
             </p>
           </div>
 
           <div class="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800/80">
-            <!-- Tags -->
-            <div class="flex flex-wrap gap-1.5">
-              ${p.tags.map(tag => `
-                <span class="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
-                  ${tag}
-                </span>
-              `).join('')}
-            </div>
-
             <!-- Live Links -->
             <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
               ${p.links.map(l => `
-                <a href="${l.url}" target="${l.url.startsWith('http') ? '_blank' : '_self'}" rel="noopener" class="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline" dir="ltr">
+                <a href="${l.url}" target="${l.url.startsWith('http') ? '_blank' : '_self'}" rel="noopener" class="inline-flex items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition" dir="ltr">
                   <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                   <span>${l.label}</span>
                 </a>
