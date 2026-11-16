@@ -71,7 +71,7 @@
 
   // Highlight active navigation link automatically
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".pg-nav a").forEach(function (link) {
+  document.querySelectorAll(".nav-group a").forEach(function (link) {
     const href = link.getAttribute("href");
     if (href === currentPath || (currentPath === "post.html" && href === "blog.html")) {
       link.setAttribute("aria-current", "page");
@@ -117,7 +117,6 @@
     const posts = await Promise.all(
       fileList.map(async function (file) {
         try {
-          // Try relative path first (works both locally and on GitHub Pages)
           let r = await fetch(file.path);
           if (!r.ok && file.downloadUrl) {
             r = await fetch(file.downloadUrl);
@@ -159,7 +158,6 @@
     if (window.marked && typeof window.marked.parse === "function") {
       return window.marked.parse(text);
     }
-    // Lightweight fallback parser if marked CDN is blocked
     return text
       .split(/\n{2,}/)
       .map((block) => {
