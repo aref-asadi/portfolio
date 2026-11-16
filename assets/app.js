@@ -10,9 +10,7 @@
   function savePreference(key, value) {
     try {
       localStorage.setItem(key, value);
-    } catch (e) {
-      // Ignore storage errors
-    }
+    } catch (e) {}
   }
 
   function readPreference(key) {
@@ -63,22 +61,38 @@
     });
   }
 
-  // Initialize saved theme and language immediately
   const savedTheme = readPreference("theme");
   const savedLanguage = readPreference("language");
   setTheme(savedTheme === "dark" ? "dark" : "light", false);
   setLanguage(savedLanguage === "fa" ? "fa" : "en", false);
 
-  // Highlight active navigation link automatically
+  // Highlight active navigation link
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll(".nav-group a").forEach(function (link) {
+  document.querySelectorAll(".nav-bar a").forEach(function (link) {
     const href = link.getAttribute("href");
     if (href === currentPath || (currentPath === "post.html" && href === "blog.html")) {
       link.setAttribute("aria-current", "page");
     }
   });
 
-  // Fetch all JSON posts from blog/ directory via GitHub API with local fallback
+  // Convert YYYY-MM-DD to Jalali (Solar Hijri) string for Persian mode
+  function formatDisplayDate(dateStr, isPersian) {
+    if (!dateStr) return "";
+    if (!isPersian) return dateStr;
+    const match = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!match) return dateStr;
+    try {
+      const d = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+      return new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(d);
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
   async function fetchAllBlogPosts() {
     const cacheKey = "pg_blog_posts_cache_v1";
     const cacheTimeKey = "pg_blog_posts_cache_time_v1";
@@ -106,9 +120,7 @@
             downloadUrl: item.download_url,
           }));
       }
-    } catch (e) {
-      // Fallback below
-    }
+    } catch (e) {}
 
     if (fileList.length === 0) {
       fileList = [{ slug: "welcome", path: "blog/welcome.json", downloadUrl: null }];
@@ -130,7 +142,6 @@
             title_fa: data.title_fa || data.title_en || file.slug,
             summary_en: data.summary_en || "",
             summary_fa: data.summary_fa || "",
-            category: data.category || "Essay",
             date: data.date || "",
             body_en: data.body_en || "",
             body_fa: data.body_fa || "",
@@ -183,7 +194,7 @@
     if (explicit) return explicit;
     const raw = (isPersian ? post.body_fa : post.body_en) || "";
     const plain = raw.replace(/[#>*_`[\]()]/g, "").trim();
-    return plain.length > 170 ? plain.slice(0, 170) + "…" : plain;
+    return plain.length > 160 ? plain.slice(0, 160) + "…" : plain;
   }
 
   window.SiteBlog = {
@@ -191,5 +202,6 @@
     renderSimpleMarkdown,
     makeExcerpt,
     escapeHtml,
+    formatDisplayDate,
   };
 })();

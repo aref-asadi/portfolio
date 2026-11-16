@@ -28,7 +28,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 20px;
+  scroll-padding-top: 110px;
 }
 
 body {
@@ -62,26 +62,37 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
-/* Farza.com + Paul Graham ultra-clean centered single-column layout */
+/* Unified mobile-width single column across all screens */
 .shell {
-  width: min(100% - 36px, 650px);
+  width: min(100% - 28px, 460px);
   margin: 0 auto;
-  padding: 34px 0 64px;
+  padding: 0 0 60px;
+}
+
+/* Sticky header for effortless navigation */
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  padding-top: 16px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
 }
 
 .topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 12px;
+  gap: 12px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--rule);
   color: var(--muted);
   font-size: 11px;
 }
 
 .topline-label {
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -92,13 +103,13 @@ html[lang="fa"] .topline-label {
 
 .controls {
   display: flex;
-  gap: 7px;
+  gap: 6px;
 }
 
 .controls button {
   border: 1px solid var(--rule);
   border-radius: 2px;
-  padding: 4px 9px;
+  padding: 3px 8px;
   background: var(--soft);
   color: var(--ink);
   cursor: pointer;
@@ -110,104 +121,101 @@ html[lang="fa"] .topline-label {
   border-color: var(--accent);
 }
 
-/* Top navigation separating Story/Home, Resume sections, and Writing clearly */
 .top-nav-wrap {
-  padding: 16px 0 14px;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 28px;
+  padding: 12px 0 10px;
 }
 
 .brand-row {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 8px 16px;
-  margin-bottom: 10px;
+  gap: 8px 12px;
+  margin-bottom: 8px;
 }
 
 .site-brand {
   text-decoration: none;
   color: var(--ink);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   letter-spacing: -0.04em;
 }
 
 html[lang="fa"] .site-brand {
   letter-spacing: 0;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .site-brand:hover {
   color: var(--accent);
 }
 
-.nav-groups {
+/* Navigation: Home, Experience, Projects, Education, Skills, Contact on start side; Blog pushed to opposite side */
+.nav-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px 14px;
-  font-size: 12px;
+  justify-content: space-between;
+  gap: 6px 10px;
+  font-size: 11.5px;
 }
 
-.nav-group {
+.nav-main-links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px 12px;
+  gap: 4px 9px;
 }
 
-.nav-divider {
-  color: var(--rule);
-  user-select: none;
-}
-
-.nav-group a {
+.nav-bar a {
   text-decoration: none;
   color: var(--link);
-  padding: 2px 4px;
+  padding: 2px 3px;
   border-radius: 2px;
 }
 
-.nav-group a:hover {
+.nav-bar a:hover {
   color: var(--accent);
   text-decoration: underline;
 }
 
-.nav-group a[aria-current="page"] {
+.nav-bar a[aria-current="page"] {
   color: var(--ink);
   font-weight: 600;
   background: var(--soft);
   border-bottom: 2px solid var(--accent);
 }
 
-/* Distinct badge/pill feel for Writing/Blog in nav so it stands apart from CV */
-.nav-writing-link {
+/* Blog link clearly separated and aligned to the opposite edge */
+.nav-blog-link {
+  margin-inline-start: auto;
+  padding: 2px 7px !important;
+  border: 1px solid var(--rule);
+  background: var(--soft);
   color: var(--accent) !important;
   font-weight: 600;
 }
 
-.nav-writing-link[aria-current="page"] {
+.nav-blog-link[aria-current="page"] {
   color: var(--ink) !important;
+  border-color: var(--accent);
 }
 
-/* Main reading column */
 .pg-main {
   min-width: 0;
 }
 
 .page-header {
-  margin-bottom: 24px;
-  padding-bottom: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--rule);
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(22px, 4.8vw, 29px);
-  line-height: 1.32;
-  letter-spacing: -0.05em;
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
 }
 
 html[lang="fa"] h1 {
@@ -215,7 +223,7 @@ html[lang="fa"] h1 {
 }
 
 .subtitle {
-  margin: 6px 0 0;
+  margin: 5px 0 0;
   color: var(--muted);
   font-size: 12px;
 }
@@ -223,9 +231,9 @@ html[lang="fa"] h1 {
 h2 {
   display: flex;
   align-items: baseline;
-  gap: 9px;
-  margin: 30px 0 14px;
-  padding-bottom: 6px;
+  gap: 8px;
+  margin: 26px 0 12px;
+  padding-bottom: 5px;
   border-bottom: 1px dashed var(--rule);
   font-size: 14px;
   font-weight: 600;
@@ -247,7 +255,7 @@ h3 {
   font-weight: 600;
 }
 
-/* Justified body paragraphs and list descriptions */
+/* Justified text across paragraphs and descriptions */
 p,
 .entry p,
 .entry li,
@@ -270,13 +278,13 @@ time {
 
 .entry {
   position: relative;
-  margin: 0 0 20px;
-  padding-inline-start: 16px;
+  margin: 0 0 18px;
+  padding-inline-start: 14px;
 }
 
 .entry::before {
   position: absolute;
-  top: 10px;
+  top: 9px;
   inset-inline-start: 0;
   width: 5px;
   height: 5px;
@@ -286,16 +294,14 @@ time {
 }
 
 .entry-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 3px 12px;
+  display: block;
 }
 
 .entry-meta {
+  display: block;
   color: var(--muted);
   font-size: 11px;
+  margin-top: 1px;
 }
 
 .entry p {
@@ -305,7 +311,7 @@ time {
 
 .entry ul {
   margin: 5px 0 0;
-  padding-inline-start: 18px;
+  padding-inline-start: 16px;
   font-size: 12.5px;
 }
 
@@ -339,7 +345,7 @@ time {
 }
 
 .plain-list li {
-  margin: 0 0 11px;
+  margin: 0 0 10px;
   font-size: 13px;
 }
 
@@ -349,31 +355,21 @@ time {
   content: "—";
 }
 
-/* Web 1.0 classic data table */
-.retro-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0 20px;
-  font-size: 12px;
+/* Simple non-table list rows */
+.simple-row {
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 12.5px;
 }
 
-.retro-table th,
-.retro-table td {
-  padding: 7px 9px;
-  border: 1px solid var(--rule);
-  text-align: start;
-  vertical-align: top;
+.simple-row:last-child {
+  border-bottom: none;
 }
 
-.retro-table th {
-  background: var(--soft);
-  font-weight: 600;
-}
-
-/* Clearly separated Writing / Blog callout & list */
+/* Writing / Blog callout & list */
 .writing-box {
-  margin: 26px 0;
-  padding: 14px 16px;
+  margin: 26px 0 0;
+  padding: 13px 14px;
   border: 1px solid var(--rule);
   border-inline-start: 3px solid var(--accent);
   background: var(--soft);
@@ -381,10 +377,9 @@ time {
 
 .writing-box-head {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 6px 12px;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
@@ -404,11 +399,7 @@ time {
 }
 
 .essay-item-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 4px 12px;
+  display: block;
 }
 
 .essay-title-link {
@@ -422,19 +413,9 @@ time {
   color: var(--muted);
 }
 
-.essay-badge {
-  display: inline-block;
-  margin-inline-start: 6px;
-  padding: 1px 5px;
-  border: 1px solid var(--rule);
-  background: var(--soft);
-  color: var(--muted);
-  font-size: 10px;
-}
-
-/* Essay body (Paul Graham / Farza style long-form reading) */
+/* Essay body */
 .essay-body {
-  margin-top: 18px;
+  margin-top: 16px;
   font-size: 13.5px;
 }
 
@@ -443,12 +424,12 @@ html[lang="fa"] .essay-body {
 }
 
 .essay-body h2 {
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
 .essay-body blockquote {
-  margin: 16px 0;
-  padding: 8px 14px;
+  margin: 14px 0;
+  padding: 8px 12px;
   border-inline-start: 2px solid var(--accent);
   background: var(--soft);
   color: var(--muted);
@@ -491,9 +472,9 @@ html[lang="fa"] .essay-body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 46px;
-  padding-top: 14px;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 12px;
   border-top: 1px solid var(--rule);
   color: var(--muted);
   font-size: 11px;
@@ -509,21 +490,6 @@ html[lang="fa"] .en {
 
 html[lang="fa"] .fa {
   display: initial;
-}
-
-@media (max-width: 560px) {
-  .shell {
-    width: min(100% - 28px, 650px);
-    padding-top: 22px;
-  }
-
-  .entry-head {
-    display: block;
-  }
-
-  .entry-meta {
-    display: block;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
