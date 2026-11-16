@@ -1,334 +1,417 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aref Asadi | Portfolio & Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aref Asadi — PharmD student, founder, and builder working at the intersection of pharmacy and technology.">
+  <title>Aref Asadi — personal website</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #111111;
-      --muted: #666666;
-      --border: #cccccc;
-      --link: #0000cc;
-      --btn-bg: #f0f0f0;
-      --btn-border: #999999;
+      color-scheme: light;
+      --paper: #fbfaf6;
+      --ink: #24231f;
+      --muted: #77746c;
+      --rule: #dedbd1;
+      --link: #315d8a;
+      --accent: #bd5b36;
+      --soft: #f1efe8;
+      --focus: #bd5b36;
     }
-    body.dark {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --muted: #9a9a9a;
-      --border: #333333;
-      --link: #6cb6ff;
-      --btn-bg: #1e1e1e;
-      --btn-border: #444444;
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #171815;
+      --ink: #e8e5dc;
+      --muted: #aaa69b;
+      --rule: #393a34;
+      --link: #91b9e2;
+      --accent: #e69b76;
+      --soft: #22231f;
+      --focus: #e69b76;
     }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 20px; }
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
-      line-height: 1.6;
       margin: 0;
-      padding: 40px 20px;
-      transition: background 0.2s, color 0.2s;
+      background: var(--paper);
+      color: var(--ink);
+      font: 14px/1.8 "JetBrains Mono", monospace;
+      transition: background-color .18s ease, color .18s ease;
     }
-    html[dir="rtl"] body {
-      font-family: 'Vazirmatn', sans-serif;
-    }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 15px;
-      margin-bottom: 25px;
+    html[lang="fa"] body { font-family: "Vazirmatn", sans-serif; font-size: 15px; }
+    a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+    .page { width: min(100% - 40px, 760px); margin: 0 auto; padding: 34px 0 52px; }
+    .topline, .site-footer {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-    }
-    .brand {
-      font-weight: bold;
-      font-size: 16px;
-      color: var(--text);
-      text-decoration: none;
-    }
-    nav a {
-      color: var(--link);
-      text-decoration: none;
-      margin-left: 12px;
-    }
-    html[dir="rtl"] nav a {
-      margin-left: 0px;
-      margin-right: 12px;
-    }
-    h1, h2, h3 {
-      font-weight: bold;
-      color: var(--text);
-    }
-    h2 {
-      font-size: 15px;
-      border-bottom: 1px dashed var(--border);
-      padding-bottom: 4px;
-      margin-top: 35px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    p {
-      margin: 10px 0;
-    }
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .muted {
-      color: var(--muted);
-      font-size: 12.5px;
-    }
-    .item-list {
-      margin-bottom: 18px;
-    }
-    .footer {
-      margin-top: 50px;
-      border-top: 1px solid var(--border);
-      padding-top: 15px;
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
       justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 11px;
     }
-    .btn-group button {
-      background: var(--btn-bg);
-      color: var(--text);
-      border: 1px solid var(--btn-border);
-      padding: 3px 8px;
+    .topline { padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+    .topline-label { letter-spacing: .06em; text-transform: uppercase; }
+    html[lang="fa"] .topline-label { letter-spacing: 0; text-transform: none; }
+    .controls { display: flex; gap: 7px; }
+    .controls button {
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 4px 8px;
+      background: var(--soft);
+      color: var(--ink);
       cursor: pointer;
-      font-size: 12px;
-      font-family: inherit;
-      margin-left: 5px;
+      font: inherit;
+      font-size: 11px;
     }
-    html[dir="rtl"] .btn-group button {
-      margin-left: 0;
-      margin-right: 5px;
+    .intro { padding: 38px 0 25px; }
+    h1 { margin: 0; font-size: clamp(26px, 6vw, 38px); line-height: 1.25; letter-spacing: -.07em; }
+    html[lang="fa"] h1 { letter-spacing: 0; }
+    .subtitle { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .intro-copy { max-width: 700px; margin: 22px 0 0; }
+    .intro-note { color: var(--muted); }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 13px;
+      padding: 12px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+    }
+    nav a { white-space: nowrap; }
+    main { padding-top: 4px; }
+    section { padding-top: 30px; }
+    h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 15px;
+      padding-bottom: 7px;
+      border-bottom: 1px dashed var(--rule);
+      font-size: 15px;
+      font-weight: 600;
+    }
+    h2 .number { color: var(--accent); font-size: 11px; font-weight: 400; }
+    h3 { margin: 0; font-size: 14px; font-weight: 600; }
+    p { margin: 8px 0; }
+    .muted, time { color: var(--muted); }
+    .entry { position: relative; margin: 0 0 17px; padding-left: 18px; }
+    .entry::before { position: absolute; top: 10px; left: 0; width: 5px; height: 5px; border: 1px solid var(--accent); border-radius: 50%; content: ""; }
+    html[dir="rtl"] .entry { padding-right: 18px; padding-left: 0; }
+    html[dir="rtl"] .entry::before { right: 0; left: auto; }
+    .entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 3px 14px; }
+    .entry-meta { color: var(--muted); font-size: 11px; }
+    .entry p { margin: 3px 0 0; font-size: 12px; }
+    .project-name { font-weight: 600; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 15px; padding: 0; list-style: none; }
+    .tag-list li { padding: 2px 7px; border: 1px solid var(--rule); border-radius: 2px; color: var(--muted); font-size: 11px; }
+    .plain-list { margin: 0; padding: 0; list-style: none; }
+    .plain-list li { margin: 0 0 9px; }
+    .plain-list li::before { margin-inline-end: 8px; color: var(--accent); content: "—"; }
+    .blog-post { padding: 0 0 15px; border-bottom: 1px dotted var(--rule); }
+    .blog-post + .blog-post { padding-top: 14px; }
+    .blog-post h3 { margin-bottom: 2px; }
+    .blog-post time { font-size: 11px; }
+    .blog-post p { margin-top: 6px; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+    .site-footer { margin-top: 38px; padding-top: 14px; border-top: 1px solid var(--rule); }
+    .fa { display: none; }
+    html[lang="fa"] .en { display: none; }
+    html[lang="fa"] .fa { display: initial; }
+    @media (max-width: 520px) {
+      .page { width: min(100% - 28px, 760px); padding-top: 22px; }
+      .topline { align-items: flex-start; }
+      .topline-label { max-width: 55%; }
+      .intro { padding-top: 30px; }
+      .entry-head { display: block; }
+      .entry-meta { display: block; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body { transition: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header>
-      <div>
-        <a href="#" class="brand" data-en="Aref Asadi" data-fa="???? ????">Aref Asadi</a>
-        <span class="muted" style="margin-left: 10px;" data-en="? PharmD Student & HealthTech Founder" data-fa="? ??????? ???????? ? ?????????? ??????">? PharmD Student & HealthTech Founder</span>
+      <div class="topline">
+        <span class="topline-label"><span class="en">A small corner of the web</span><span class="fa">گوشه‌ای کوچک از وب</span></span>
+        <div class="controls">
+          <button id="theme-toggle" type="button" aria-pressed="false"><span class="en">Dark mode</span><span class="fa">حالت تاریک</span></button>
+          <button id="language-toggle" type="button" lang="fa" aria-label="Switch language">فارسی</button>
+        </div>
       </div>
-      <div class="btn-group">
-        <button onclick="toggleTheme()">?? Theme</button>
-        <button onclick="toggleLang()">????? / EN</button>
+      <div class="intro">
+        <h1>Aref Asadi <span class="fa">عارف اسدی</span></h1>
+        <p class="subtitle"><span class="en">PharmD student · founder · product builder</span><span class="fa">دانشجوی داروسازی · بنیان‌گذار · سازنده محصول</span></p>
+        <p class="intro-copy">
+          <span class="en">I work where pharmacy, technology, and entrepreneurship meet. I’m interested in making healthcare more useful through thoughtful software, applied AI, and products built around real clinical needs.</span>
+          <span class="fa">در نقطه تلاقی داروسازی، فناوری و کارآفرینی کار می‌کنم. به بهتر کردن خدمات سلامت با نرم‌افزار سنجیده، کاربردهای هوش مصنوعی و محصولاتی که از نیازهای واقعی بالینی شروع می‌شوند علاقه دارم.</span>
+        </p>
+        <p class="intro-note muted"><span class="en">Based in Tehran, Iran. Usually thinking about health, products, and how things work.</span><span class="fa">ساکن تهران. معمولاً در فکر سلامت، محصول و چگونگی کارکرد چیزها.</span></p>
       </div>
+      <nav aria-label="Page sections">
+        <a href="#about"><span class="en">About</span><span class="fa">درباره</span></a>
+        <a href="#experience"><span class="en">Experience</span><span class="fa">تجربه</span></a>
+        <a href="#projects"><span class="en">Projects</span><span class="fa">پروژه‌ها</span></a>
+        <a href="#education"><span class="en">Education</span><span class="fa">تحصیلات</span></a>
+        <a href="#skills"><span class="en">Skills</span><span class="fa">مهارت‌ها</span></a>
+        <a href="#writing"><span class="en">Writing</span><span class="fa">نوشته‌ها</span></a>
+        <a href="#contact"><span class="en">Contact</span><span class="fa">تماس</span></a>
+      </nav>
     </header>
-
-    <nav style="margin-bottom: 30px;">
-      <a href="#about" data-en="About" data-fa="?????? ??">About</a> /
-      <a href="#education" data-en="Education" data-fa="???????">Education</a> /
-      <a href="#experiences" data-en="Experiences" data-fa="?????">Experiences</a> /
-      <a href="#projects" data-en="Projects" data-fa="????????">Projects</a> /
-      <a href="#volunteer" data-en="Volunteer" data-fa="?????????">Volunteer</a> /
-      <a href="#skills" data-en="Skills" data-fa="????????">Skills</a> /
-      <a href="#certifications" data-en="Certifications" data-fa="????????????">Certifications</a> /
-      <a href="#blog" data-en="Blog" data-fa="?????">Blog</a> /
-      <a href="#contact" data-en="Contact" data-fa="????">Contact</a>
-    </nav>
 
     <main>
       <section id="about">
-        <h2 data-en="About" data-fa="?????? ??">About</h2>
-        <p data-en="I'm Aref Asadi, a PharmD student and HealthTech entrepreneur with a keen interest in the intersection of pharmacy, management, economics, and technology. My drive is fueled by a belief in leveraging artificial intelligence, data science, and modern web technologies to modernize healthcare and pharmacy." data-fa="?? ???? ????? ??????? ???????? ? ???????? ?????? ?? ????? ???? ?? ????? ????????? ??????? ?????? ? ?????? ????. ?????? ?? ??????? ?? ??? ??????? ??? ???? ? ?????????? ???? ?? ???? ????????? ???? ????? ? ???????? ???.">
-          I'm Aref Asadi, a PharmD student and HealthTech entrepreneur with a keen interest in the intersection of pharmacy, management, economics, and technology. My drive is fueled by a belief in leveraging artificial intelligence, data science, and modern web technologies to modernize healthcare and pharmacy.
-        </p>
+        <h2><span class="number">01</span><span class="en">A little about me</span><span class="fa">کمی درباره من</span></h2>
+        <p><span class="en">I’m a Doctor of Pharmacy student at Alborz University of Medical Sciences and a founder working on digital health and pharmaceutical products. My interests range from clinical pharmacy and data science to product strategy, business, and the details of building for the web.</span><span class="fa">دانشجوی دکترای حرفه‌ای داروسازی دانشگاه علوم پزشکی البرز و بنیان‌گذار حوزه سلامت دیجیتال و محصولات دارویی هستم. علایقم از داروسازی بالینی و علم داده تا راهبرد محصول، کسب‌وکار و جزئیات ساخت برای وب را در بر می‌گیرد.</span></p>
+        <p><span class="en">Outside work and study, I enjoy music, podcasts, and literature.</span><span class="fa">بیرون از کار و درس، از موسیقی، پادکست و ادبیات لذت می‌برم.</span></p>
       </section>
 
-      <section id="education">
-        <h2 data-en="Education" data-fa="???????">Education</h2>
-        <div class="item-list">
-          <strong>Doctor of Pharmacy (PharmD)</strong><br>
-          <span class="muted" data-en="Alborz University of Medical Sciences (ABZUMS) | Sep 2020 ? Present" data-fa="??????? ???? ????? ????? | ?????? ???? ? ?????">Alborz University of Medical Sciences (ABZUMS) | Sep 2020 ? Present</span>
+      <section id="experience">
+        <h2><span class="number">02</span><span class="en">Things I’ve worked on</span><span class="fa">سوابق کاری</span></h2>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Founder</span><span class="fa">بنیان‌گذار</span> · Arshid Tech <span lang="fa">(آرشید تک)</span></h3><span class="entry-meta">Jul 2026 – <span class="en">Present</span><span class="fa">اکنون</span></span></div>
+          <p><span class="en">Building a technology and AI-driven venture for specialized digital health, pharmaceutical, and web solutions, including clinical and educational platforms.</span><span class="fa">ساخت کسب‌وکاری فناورانه و مبتنی بر هوش مصنوعی در سلامت دیجیتال، داروسازی و وب؛ از جمله پلتفرم‌های بالینی و آموزشی.</span></p>
         </div>
-        <div class="item-list">
-          <strong data-en="High School Diploma - Experimental Sciences" data-fa="????? ???????? - ???? ?????">High School Diploma - Experimental Sciences</strong><br>
-          <span class="muted" data-en="Shahid Rajaei NODET (Sampad) High School, Islamshahr | Sep 2013 ? Aug 2019" data-fa="???????? ?????????? ?????? ???? ????? (?????) ???????? | ?????? ???? ? ????? ????">Shahid Rajaei NODET (Sampad) High School, Islamshahr | Sep 2013 ? Aug 2019</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Content Creator &amp; Project Executor</span><span class="fa">تولیدکننده محتوا و مجری پروژه</span> · Balenj <span lang="fa">(بالنج)</span></h3><span class="entry-meta">Oct 2025 – Jun 2026</span></div>
+          <p><span class="en">Led project execution workflows and created content strategies to support startup growth and user engagement.</span><span class="fa">هدایت فرایندهای اجرای پروژه و طراحی راهبرد محتوا برای رشد استارتاپ و تعامل کاربران.</span></p>
         </div>
-      </section>
-
-      <section id="experiences">
-        <h2 data-en="Professional Experiences" data-fa="????? ???????">Professional Experiences</h2>
-        
-        <div class="item-list">
-          <strong>Founder</strong> ? <strong>Arshid Tech (????? ??)</strong> <span class="muted">(Jul 2026 ? Present)</span><br>
-          <span class="muted" data-en="Founded and leading a technology and AI-driven venture focused on digital health and pharmaceutical web solutions (GeriaPharm, RheumaPharm)." data-fa="??????????? ? ?????? ???????? ?????? ? ??? ?????? ?? ????? ?? ????? ??????? ? ????????? ????????.">Founded and leading a technology and AI-driven venture focused on digital health and pharmaceutical web solutions.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Founder</span><span class="fa">بنیان‌گذار</span> · Hambaha <span lang="fa">(هم‌بها)</span></h3><span class="entry-meta">Sep 2024 – Sep 2025</span></div>
+          <p><span class="en">Founded and managed an early-stage startup, from product ideation and business modeling to operations.</span><span class="fa">بنیان‌گذاری و مدیریت یک استارتاپ نوپا، از ایده‌پردازی محصول و مدل کسب‌وکار تا اجرا.</span></p>
         </div>
-
-        <div class="item-list">
-          <strong data-en="Content Creator & Project Executor" data-fa="?????????? ????? ? ???? ?????">Content Creator & Project Executor</strong> ? <strong>Balenj (?????)</strong> <span class="muted">(Oct 2025 ? Jun 2026)</span><br>
-          <span class="muted" data-en="Led project execution workflows and created targeted content strategies to support startup growth." data-fa="?????? ????????? ????? ???????? ? ???????????? ??????? ???? ??? ????????.">Led project execution workflows and created targeted content strategies.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Co-founder</span><span class="fa">هم‌بنیان‌گذار</span> · MedX <span lang="fa">(مدایکس)</span></h3><span class="entry-meta">Dec 2023 – Sep 2024</span></div>
+          <p><span class="en">Helped shape product strategy, coordinate the team, and validate an early-stage health startup.</span><span class="fa">همکاری در تدوین راهبرد محصول، هماهنگی تیم و اعتبارسنجی اولیه یک استارتاپ سلامت.</span></p>
         </div>
-
-        <div class="item-list">
-          <strong>Founder</strong> ? <strong>Hambaha (??????)</strong> <span class="muted">(Sep 2024 ? Sep 2025)</span><br>
-          <span class="muted" data-en="Founded and managed an early-stage startup, overseeing product ideation, business modeling, and operational execution." data-fa="??????????? ? ?????? ???????? ????? ?????? ????? ?? ??????????? ????? ? ???????? ????????.">Founded and managed an early-stage startup, overseeing product ideation and business modeling.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Associate Product Manager (part-time)</span><span class="fa">دستیار مدیر محصول (پاره‌وقت)</span> · NeuroBI</h3><span class="entry-meta">Oct – Nov 2023</span></div>
+          <p><span class="en">Supported roadmap execution and feature prioritization after an internship with the team.</span><span class="fa">پس از دوره کارآموزی، در اجرای نقشه راه و اولویت‌بندی قابلیت‌ها مشارکت کردم.</span></p>
         </div>
-
-        <div class="item-list">
-          <strong>Co-Founder</strong> ? <strong>MedX (??????)</strong> <span class="muted">(Dec 2023 ? Sep 2024)</span><br>
-          <span class="muted" data-en="Driving product strategy, team coordination, and early-stage market validation for digital health." data-fa="????? ???????? ?????? ??????? ??? ? ?????????? ????? ????? ????? ???????.">Driving product strategy, team coordination, and early-stage market validation.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Product Manager Intern</span><span class="fa">کارآموز مدیریت محصول</span> · NeuroBI</h3><span class="entry-meta">Aug – Sep 2023</span></div>
         </div>
-
-        <div class="item-list">
-          <strong data-en="Associated Product Manager" data-fa="???? ????? ??????">Associated Product Manager</strong> ? <strong>NeuroBI</strong> <span class="muted">(Oct 2023 ? Nov 2023)</span><br>
-          <span class="muted" data-en="Transitioned from internship to part-time product management, assisting in product roadmap execution." data-fa="?????? ?? ???????? ?? ?????? ????? ????????? ??? ?? ????? ???? ??? ?????.">Transitioned from internship to part-time product management.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Market Research Intern</span><span class="fa">کارآموز تحقیقات بازار</span> · ARAS Pharmaceutical</h3><span class="entry-meta">Jul – Oct 2023</span></div>
         </div>
-
-        <div class="item-list">
-          <strong data-en="Head of Data Science / Pharmacy Association" data-fa="?????? ????? ??? ???? ? ????????">Head of Data Science & Pharmacy Association</strong> ? <strong>Iran Elites Network</strong> <span class="muted">(Mar 2023 ? Oct 2023)</span><br>
-          <span class="muted" data-en="Network of national and international science Olympiad medalists and top university entrance ranks." data-fa="???? ?????????? ?????????? ???? ??? ? ?????????? ? ???????? ???? ?????.">Network of national and international science Olympiad medalists and top ranks.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Head of Data Science &amp; Pharmacy Associations</span><span class="fa">سرپرست انجمن‌های علم داده و داروسازی</span> · Iran Elites Network</h3><span class="entry-meta">Mar – Oct 2023</span></div>
+          <p><span class="en">Worked with a network of science Olympiad medalists, national entrance exam ranks, and scientific elites.</span><span class="fa">همکاری با شبکه‌ای از مدال‌آوران المپیادهای علمی، رتبه‌های برتر کنکور و نخبگان علمی.</span></p>
         </div>
-
-        <div class="item-list">
-          <strong data-en="Additional Roles: CS50x Iran, ARAS Pharma, StuUp, TieUp, Raman Accelerator" data-fa="???? ?????: CS50x ?????? ???????? ???? ??????? ??????? ????????? ?????">Additional Roles</strong> <span class="muted">(2022 ? 2023)</span><br>
-          <span class="muted" data-en="Scientific Team @ CS50x Iran ? Market Researcher @ ARAS Pharma ? Graphic Designer @ StuUp ? Team Member @ TieUp ? PR Assistant @ Raman Accelerator." data-fa="??? ???? CS50x ????? ? ???? ????? ???????? ??? ? ???? ?????? ?????? ? ??? ??? ?????? ? ?????? ????? ????? ????????? ?????.">Scientific Team @ CS50x Iran ? Market Researcher @ ARAS Pharma ? Graphic Designer @ StuUp ? Team Member @ TieUp ? PR Assistant @ Raman Accelerator.</span>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Scientific Team Member</span><span class="fa">عضو تیم علمی</span> · CS50x Iran</h3><span class="entry-meta">Apr – Jul 2023</span></div>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Graphic Designer (part-time)</span><span class="fa">طراح گرافیک (پاره‌وقت)</span> · StuUp</h3><span class="entry-meta">Jan – Mar 2023</span></div>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Team Member (part-time)</span><span class="fa">عضو تیم (پاره‌وقت)</span> · TieUp</h3><span class="entry-meta">Sep 2022 – Mar 2023</span></div>
+          <p><span class="en">Contributed to a health-system talent management startup connecting job seekers with employers.</span><span class="fa">همکاری با استارتاپ مدیریت استعداد در نظام سلامت برای پیوند دادن کارجویان و کارفرمایان.</span></p>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Public Relations Assistant (part-time)</span><span class="fa">دستیار روابط عمومی (پاره‌وقت)</span> · Raman Accelerator</h3><span class="entry-meta">Feb – Jul 2022</span></div>
         </div>
       </section>
 
       <section id="projects">
-        <h2 data-en="Featured Projects" data-fa="????????? ???????">Featured Projects</h2>
-        <div class="item-list">
-          <strong>GeriaPharm</strong> ? <a href="http://geriapharm.arshid.tech/" target="_blank">geriapharm.arshid.tech</a> | <a href="https://geriapharm.onrender.com/" target="_blank">Render</a><br>
-          <span class="muted" data-en="Specialized geriatric pharmacy web platform designed to assist healthcare professionals with medication management in elderly patients." data-fa="?????? ????? ???????? ???????? ???? ??? ?? ??????? ????? ?? ?????? ?????????? ????????.">Specialized geriatric pharmacy web platform designed for elderly medication management.</span>
+        <h2><span class="number">03</span><span class="en">Selected projects</span><span class="fa">پروژه‌های منتخب</span></h2>
+        <div class="entry">
+          <div class="entry-head"><h3 class="project-name">GeriaPharm</h3><span class="entry-meta"><a href="https://geriapharm.arshid.tech/" target="_blank" rel="noopener noreferrer"><span class="en">website</span><span class="fa">وب‌سایت</span></a> · <a href="https://geriapharm.onrender.com/" target="_blank" rel="noopener noreferrer"><span class="en">demo</span><span class="fa">نسخه آزمایشی</span></a></span></div>
+          <p><span class="en">A pharmacy platform for healthcare professionals and students focused on medication management for older adults.</span><span class="fa">پلتفرم داروسازی برای متخصصان و دانشجویان سلامت با تمرکز بر مدیریت دارویی سالمندان.</span></p>
         </div>
-        <div class="item-list">
-          <strong>RheumaPharm</strong> ? <a href="https://rheumapharm.arshid.tech" target="_blank">rheumapharm.arshid.tech</a><br>
-          <span class="muted" data-en="Web-based clinical decision support and educational tool focused on rheumatology pharmacotherapy." data-fa="????? ????? ?? ?? ????????? ?????? ? ?????? ?? ????? ?? ?????????? ??????????.">Web-based clinical decision support and educational tool focused on rheumatology.</span>
+        <div class="entry">
+          <div class="entry-head"><h3 class="project-name">RheumaPharm</h3><span class="entry-meta"><a href="https://rheumapharm.arshid.tech/" target="_blank" rel="noopener noreferrer"><span class="en">website</span><span class="fa">وب‌سایت</span></a></span></div>
+          <p><span class="en">Clinical decision support and learning tools for rheumatology pharmacotherapy.</span><span class="fa">ابزارهای آموزش و تصمیم‌یار بالینی برای دارودرمانی روماتولوژی.</span></p>
         </div>
-        <div class="item-list">
-          <strong>Antibiotic Play</strong> ? <a href="https://antibioticplay.ir/" target="_blank">antibioticplay.ir</a><br>
-          <span class="muted" data-en="Interactive educational web platform aimed at simplifying antimicrobial stewardship and antibiotic selection." data-fa="?????? ?? ?????? ?????? ?? ??? ????????? ?????? ???? ??????????????.">Interactive educational web platform aimed at simplifying antimicrobial stewardship.</span>
+        <div class="entry">
+          <div class="entry-head"><h3 class="project-name">Antibiotic Play</h3><span class="entry-meta"><a href="https://antibioticplay.ir/" target="_blank" rel="noopener noreferrer"><span class="en">website</span><span class="fa">وب‌سایت</span></a></span></div>
+          <p><span class="en">An interactive learning platform for antimicrobial stewardship and antibiotic selection.</span><span class="fa">پلتفرم آموزشی تعاملی برای مدیریت مصرف آنتی‌میکروبیال‌ها و انتخاب آنتی‌بیوتیک.</span></p>
         </div>
-        <div class="item-list">
-          <strong data-en="Hamrah IV (????? IV)" data-fa="????? IV">Hamrah IV</strong><br>
-          <span class="muted" data-en="Specialized clinical application designed for intravenous (IV) drug compatibility, dilution, and administration guidance." data-fa="???????? ????? ?????? ???? ???????? ????????? ? ??????? ????? ????? ??????.">Specialized clinical application designed for intravenous (IV) drug compatibility.</span>
+        <div class="entry">
+          <div class="entry-head"><h3 class="project-name">Hamrah IV <span lang="fa">(همراه IV)</span></h3><span class="entry-meta"><span class="en">Clinical application</span><span class="fa">اپلیکیشن بالینی</span></span></div>
+          <p><span class="en">Guidance for intravenous drug compatibility, dilution, and administration.</span><span class="fa">راهنمای سازگاری، رقیق‌سازی و تجویز داروهای وریدی.</span></p>
         </div>
-        <div class="item-list">
-          <strong>StartupLab & PubLab</strong> ? <a href="https://startuplab.site/" target="_blank">startuplab.site</a> | <a href="https://publab.startuplab.site/" target="_blank">publab</a><br>
-          <span class="muted" data-en="Full-featured WordPress platforms for startup incubation and scientific publishing initiatives." data-fa="?????????? ???? ?????? ???? ??????? ??????????? ? ???????? ????.">Full-featured WordPress platforms for startup incubation and scientific publishing.</span>
+        <div class="entry">
+          <div class="entry-head"><h3 class="project-name">StartupLab &amp; PubLab</h3><span class="entry-meta"><a href="https://startuplab.site/" target="_blank" rel="noopener noreferrer">StartupLab</a> · <a href="https://publab.startuplab.site/" target="_blank" rel="noopener noreferrer">PubLab</a></span></div>
+          <p><span class="en">Designed, developed, and deployed WordPress platforms for startup incubation and scientific publishing.</span><span class="fa">طراحی، توسعه و راه‌اندازی پلتفرم‌های وردپرسی برای شتاب‌دهی استارتاپ و انتشار علمی.</span></p>
         </div>
       </section>
 
-      <section id="volunteer">
-        <h2 data-en="Volunteer Experiences" data-fa="????? ?????????">Volunteer Experiences</h2>
-        <p class="muted" data-en="? Internal Relations Chairperson @ IPhSA Iran (2023?2024)<br>? Representative @ Surena Pharmed in Alborz UMS (2020?2024)<br>? Head of PR @ Pharmacy Mentoring Office & Research Committee (ABZUMS)<br>? Social Media Coordinator & Policy Team @ IPhSA Iran<br>? Executive Assistant @ USERN & ABZUMS English Club<br>? Headmaster @ Zange Tafrih Publication ? Graphic Designer @ IPhSA Iran ? Event Assistant @ MAIA" data-fa="? ???? ????? ????? IPhSA ????? (????-????)<br>? ??????? ????? ????? ?? ??????? ???? ????? ????? (????-????)<br>? ?????? ????? ????? ???? ???????? ???????? ? ????? ??????? (ABZUMS)<br>? ???????????? ???????? ??????? ? ??? ??????????? IPhSA ?????<br>? ?????? ?????? USERN ? ???? ??????? ABZUMS<br>? ???? ????? ????? ??? ????? ? ???? ?????? IPhSA ????? ? ?????? ?????? MAIA">
-          ? Internal Relations Chairperson @ IPhSA Iran (2023?2024)<br>
-          ? Representative @ Surena Pharmed in Alborz UMS (2020?2024)<br>
-          ? Head of PR @ Pharmacy Mentoring Office & Research Committee (ABZUMS)<br>
-          ? Social Media Coordinator & Policy Team @ IPhSA Iran<br>
-          ? Executive Assistant @ USERN & ABZUMS English Club<br>
-          ? Headmaster @ Zange Tafrih Publication ? Graphic Designer @ IPhSA Iran ? Event Assistant @ MAIA
-        </p>
+      <section id="education">
+        <h2><span class="number">04</span><span class="en">Education</span><span class="fa">تحصیلات</span></h2>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">Doctor of Pharmacy (PharmD)</span><span class="fa">دکترای حرفه‌ای داروسازی</span></h3><span class="entry-meta">Sep 2020 – <span class="en">Present</span><span class="fa">اکنون</span></span></div>
+          <p>Alborz University of Medical Sciences (ABZUMS)</p>
+        </div>
+        <div class="entry">
+          <div class="entry-head"><h3><span class="en">High School Diploma, Experimental Sciences</span><span class="fa">دیپلم علوم تجربی</span></h3><span class="entry-meta">Sep 2013 – Aug 2019</span></div>
+          <p>Shahid Rajaei NODET (Sampad) High School, Islamshahr</p>
+        </div>
       </section>
 
       <section id="skills">
-        <h2 data-en="Skills" data-fa="????????">Skills</h2>
-        <p>
-          <strong data-en="Technical & AI Development:" data-fa="????? ??? ? ??? ??????:">Technical & AI Development:</strong> AI Integration, LLM Applications, Data Analysis, Python, Full-Stack Web Deployment, WordPress, UI/UX, Git/GitHub, PowerBI, Adobe Photoshop/Premiere.<br>
-          <strong data-en="Soft Skills:" data-fa="????????? ???:">Soft Skills:</strong> Startup Leadership & Entrepreneurship, Product & Project Management, Strategic Thinking, Public Speaking, Storytelling & Networking.
-        </p>
+        <h2><span class="number">05</span><span class="en">Skills &amp; interests</span><span class="fa">مهارت‌ها و توانمندی‌ها</span></h2>
+        <p class="muted"><span class="en">Some of the tools and subjects I work with:</span><span class="fa">برخی از ابزارها و حوزه‌هایی که با آن‌ها کار می‌کنم:</span></p>
+        <ul class="tag-list">
+          <li><span class="en">AI &amp; LLM applications</span><span class="fa">کاربردهای هوش مصنوعی و مدل‌های زبانی</span></li>
+          <li>Python</li>
+          <li><span class="en">Data analysis</span><span class="fa">تحلیل داده</span></li>
+          <li><span class="en">Full-stack web</span><span class="fa">توسعه فول‌استک وب</span></li>
+          <li>WordPress</li><li>UI/UX</li><li>Power BI</li><li>Git &amp; GitHub</li><li>Photoshop</li><li>Premiere</li>
+          <li><span class="en">Product management</span><span class="fa">مدیریت محصول</span></li>
+          <li><span class="en">Project management</span><span class="fa">مدیریت پروژه</span></li>
+          <li><span class="en">Startup leadership</span><span class="fa">رهبری استارتاپ</span></li>
+          <li><span class="en">Public speaking</span><span class="fa">سخنرانی</span></li>
+          <li><span class="en">Strategic thinking</span><span class="fa">تفکر راهبردی</span></li>
+        </ul>
+        <p><strong><span class="en">Languages:</span><span class="fa">زبان‌ها:</span></strong> <span class="en">Persian (native), Turkish (native), English (professional working proficiency).</span><span class="fa">فارسی (زبان مادری)، ترکی (زبان مادری)، انگلیسی (تسلط حرفه‌ای).</span></p>
+      </section>
+
+      <section id="volunteer">
+        <h2><span class="number">06</span><span class="en">Community &amp; volunteer work</span><span class="fa">فعالیت‌های داوطلبانه</span></h2>
+        <ul class="plain-list">
+          <li><span class="en">Internal Relations Chairperson, IPhSA Iran · Mar 2023 – Sep 2024</span><span class="fa">رئیس روابط داخلی، IPhSA Iran · مارس ۲۰۲۳ تا سپتامبر ۲۰۲۴</span></li>
+          <li><span class="en">Representative at Alborz UMS, Surena Pharmed · Nov 2020 – Sep 2024</span><span class="fa">نماینده دانشگاه علوم پزشکی البرز، سورنا فارمد · نوامبر ۲۰۲۰ تا سپتامبر ۲۰۲۴</span></li>
+          <li><span class="en">Head of Public Relations, Pharmacy Mentoring Office · Apr 2022 – Sep 2023</span><span class="fa">سرپرست روابط عمومی دفتر منتورینگ داروسازی · آوریل ۲۰۲۲ تا سپتامبر ۲۰۲۳</span></li>
+          <li><span class="en">Head of Public Relations, Pharmacy Students’ Research Committee · Jan 2022 – Sep 2023</span><span class="fa">سرپرست روابط عمومی کمیته تحقیقات دانشجویی داروسازی · ژانویه ۲۰۲۲ تا سپتامبر ۲۰۲۳</span></li>
+          <li><span class="en">Social Media Coordinator &amp; Policy Team Member, IPhSA Iran · 2022–2023</span><span class="fa">هماهنگ‌کننده شبکه‌های اجتماعی و عضو تیم سیاست‌گذاری، IPhSA Iran · ۲۰۲۲ تا ۲۰۲۳</span></li>
+          <li><span class="en">Executive Assistant, ABZUMS English Club and USERN · 2022–2023</span><span class="fa">دستیار اجرایی، کلوپ زبان انگلیسی دانشگاه علوم پزشکی البرز و USERN · ۲۰۲۲ تا ۲۰۲۳</span></li>
+          <li><span class="en">Headmaster, Zange Tafrih Publication · Dec 2021 – Nov 2022</span><span class="fa">مدیرمسئول نشریه زنگ تفریح · دسامبر ۲۰۲۱ تا نوامبر ۲۰۲۲</span></li>
+          <li><span class="en">Graphic Designer, IPhSA Iran · Nov 2020 – Oct 2022</span><span class="fa">طراح گرافیک، IPhSA Iran · نوامبر ۲۰۲۰ تا اکتبر ۲۰۲۲</span></li>
+          <li><span class="en">Event Assistant, Medical Artificial Intelligence Association · Feb – Jun 2022</span><span class="fa">دستیار رویداد، انجمن هوش مصنوعی پزشکی · فوریه تا ژوئن ۲۰۲۲</span></li>
+        </ul>
       </section>
 
       <section id="certifications">
-        <h2 data-en="Licenses & Certifications" data-fa="???????????? ? ???????">Licenses & Certifications</h2>
-        <p class="muted">
-          ? CS50's Introduction to Programming with Python (CS50P) ? CS50 (Aug 2023)<br>
-          ? CS50's Introduction to Computer Science (CS50x) ? CS50 (Jul 2023)<br>
-          ? IBM Data Science Professional Certificate ? Coursera (Nov 2022)<br>
-          ? AI for Everyone ? Coursera (Jun 2022)<br>
-          ? Machine Learning, from Principles to Applications ? Interdisciplinary Schools (Jun 2022)<br>
-          ? Artificial Intelligence: From Brain Imaging Data Analysis to Neural Networking ? GABA (Apr 2022)<br>
-          ? Marketing & Sales in Cosmetic Products & Novel Leadership Techniques ? Surena Pharmed
-        </p>
+        <h2><span class="number">07</span><span class="en">Courses &amp; certificates</span><span class="fa">دوره‌ها و گواهینامه‌ها</span></h2>
+        <ul class="plain-list">
+          <li>CS50’s Introduction to Programming with Python (CS50P) <span class="muted">— CS50, Aug 2023</span></li>
+          <li>CS50’s Introduction to Computer Science (CS50x) <span class="muted">— CS50, Jul 2023</span></li>
+          <li>IBM Data Science Professional Certificate <span class="muted">— Coursera, Nov 2022</span></li>
+          <li>AI for Everyone <span class="muted">— Coursera, Jun 2022</span></li>
+          <li>Machine Learning, from Principles to Applications <span class="muted">— Interdisciplinary Schools, Jun 2022</span></li>
+          <li>Artificial Intelligence: From Brain Imaging Data Analysis to Neural Networking <span class="muted">— GABA Neuroscience Association, Apr 2022</span></li>
+          <li>Marketing &amp; Sales in Cosmetic Products <span class="muted">— Surena Pharmed, Feb 2022</span></li>
+          <li>Novel Management Techniques for Young Leaders <span class="muted">— Surena Pharmed, Dec 2021</span></li>
+        </ul>
       </section>
 
-      <section id="blog">
-        <h2 data-en="Blog" data-fa="?????">Blog</h2>
-        <p class="muted" data-en="Essays and notes. Manage posts via <a href='admin/index.html' target='_blank'>Sveltia CMS Admin</a>." data-fa="?????????? ? ??????. ?????? ?????? ?? ???? <a href='admin/index.html' target='_blank'>??? ?????? CMS</a>.">
-          Essays and notes. Manage posts via <a href="admin/index.html" target="_blank">Sveltia CMS Admin</a>.
-        </p>
-        <div id="posts-container" style="margin-top: 15px;">
-          <p class="muted">Loading blog posts...</p>
+      <section id="writing">
+        <h2><span class="number">08</span><span class="en">Notes from the weblog</span><span class="fa">یادداشت‌های وبلاگ</span></h2>
+        <p class="muted"><span class="en">Occasional thoughts on health, software, products, and the work of making things.</span><span class="fa">یادداشت‌هایی گاه‌به‌گاه درباره سلامت، نرم‌افزار، محصول و فرایند ساختن.</span></p>
+        <div id="posts-container" aria-live="polite">
+          <p class="muted"><span class="en">Loading notes…</span><span class="fa">یادداشت‌ها در حال بارگذاری…</span></p>
         </div>
       </section>
 
       <section id="contact">
-        <h2 data-en="Contact" data-fa="????">Contact</h2>
-        <p>
-          Email: <a href="mailto:rf.aref.asadi@gmail.com">rf.aref.asadi@gmail.com</a><br>
-          GitHub: <a href="https://github.com/aref-asadi" target="_blank">github.com/aref-asadi</a><br>
-          LinkedIn: <a href="https://linkedin.com/in/aref-asadi" target="_blank">linkedin.com/in/aref-asadi</a><br>
-          Telegram: <a href="https://t.me/r_aref_f" target="_blank">t.me/r_aref_f</a>
-        </p>
+        <h2><span class="number">09</span><span class="en">Say hello</span><span class="fa">در تماس باشیم</span></h2>
+        <p><span class="en">Have a question, an idea, or a project in health and technology? I’d be glad to hear from you.</span><span class="fa">پرسشی، ایده‌ای یا پروژه‌ای در حوزه سلامت و فناوری دارید؟ خوشحال می‌شوم از شما بشنوم.</span></p>
+        <div class="contact-links">
+          <a href="mailto:rf.aref.asadi@gmail.com"><span class="en">Email</span><span class="fa">ایمیل</span></a>
+          <a href="https://github.com/aref-asadi" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/aref-asadi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://t.me/r_aref_f" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <span class="muted"><span class="en">Tehran, Iran</span><span class="fa">تهران، ایران</span> · +98 919-9959228</span>
+        </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div>&copy; 2026 Aref Asadi</div>
-      <div><a href="admin/index.html" target="_blank" data-en="CMS Admin" data-fa="?????? CMS">CMS Admin</a></div>
+    <footer class="site-footer">
+      <span>© 2026 Aref Asadi</span>
+      <span><span class="en">Last updated November 2026</span><span class="fa">آخرین به‌روزرسانی: نوامبر ۲۰۲۶</span> · <a href="admin/index.html"><span class="en">CMS</span><span class="fa">مدیریت وبلاگ</span></a></span>
     </footer>
   </div>
 
   <script>
-    function toggleLang() {
-      const isFa = document.documentElement.dir === 'rtl';
-      document.documentElement.dir = isFa ? 'ltr' : 'rtl';
-      document.querySelectorAll('[data-en]').forEach(el => {
-        const text = el.getAttribute('data-' + (isFa ? 'en' : 'fa'));
-        if (text) el.innerHTML = text;
-      });
+    const root = document.documentElement;
+    const themeButton = document.getElementById("theme-toggle");
+    const languageButton = document.getElementById("language-toggle");
+
+    function savePreference(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (error) {
+        console.warn("Could not save " + key + " preference.", error);
+      }
+    }
+
+    function readPreference(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch (error) {
+        console.warn("Could not read " + key + " preference.", error);
+        return null;
+      }
+    }
+
+    function setTheme(theme, persist) {
+      root.dataset.theme = theme;
+      const isDark = theme === "dark";
+      themeButton.setAttribute("aria-pressed", String(isDark));
+      themeButton.innerHTML = isDark
+        ? '<span class="en">Light mode</span><span class="fa">حالت روشن</span>'
+        : '<span class="en">Dark mode</span><span class="fa">حالت تاریک</span>';
+      if (persist) savePreference("theme", theme);
+    }
+
+    function setLanguage(language, persist) {
+      const isPersian = language === "fa";
+      root.lang = language;
+      root.dir = isPersian ? "rtl" : "ltr";
+      languageButton.textContent = isPersian ? "English" : "فارسی";
+      languageButton.lang = isPersian ? "en" : "fa";
+      languageButton.setAttribute("aria-label", isPersian ? "Switch to English" : "تغییر زبان به فارسی");
+      if (persist) savePreference("language", language);
+    }
+
+    themeButton.addEventListener("click", function () {
+      setTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
+    });
+    languageButton.addEventListener("click", function () {
+      setLanguage(root.lang === "fa" ? "en" : "fa", true);
       loadBlogPosts();
-    }
+    });
 
-    function toggleTheme() {
-      const body = document.body;
-      body.classList.toggle('dark');
-      const isDark = body.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
-    }
+    const savedTheme = readPreference("theme");
+    const savedLanguage = readPreference("language");
+    if (savedTheme === "dark" || savedTheme === "light") setTheme(savedTheme, false);
+    if (savedLanguage === "fa" || savedLanguage === "en") setLanguage(savedLanguage, false);
 
     async function loadBlogPosts() {
+      const container = document.getElementById("posts-container");
       try {
-        const res = await fetch('blog/welcome.json');
-        if (!res.ok) throw new Error('Not found');
-        const post = await res.json();
-        const isFa = document.documentElement.dir === 'rtl';
-        const title = isFa ? post.title_fa : post.title_en;
-        const body = isFa ? post.body_fa : post.body_en;
-
-        const container = document.getElementById('posts-container');
-        container.innerHTML = `
-          <div style="margin-bottom: 20px; border-bottom: 1px dotted var(--border); padding-bottom: 15px;">
-            <h3>${title}</h3>
-            <span class="muted">${post.date}</span>
-            <p>${body}</p>
-          </div>
-        `;
-      } catch (e) {
-        document.getElementById('posts-container').innerHTML = '<p class="muted">No blog posts yet. Use CMS Admin to add one.</p>';
+        const response = await fetch("blog/welcome.json");
+        if (!response.ok) throw new Error("Blog request failed with status " + response.status);
+        const post = await response.json();
+        const isPersian = root.lang === "fa";
+        const article = document.createElement("article");
+        article.className = "blog-post";
+        const title = document.createElement("h3");
+        title.textContent = isPersian ? post.title_fa : post.title_en;
+        const date = document.createElement("time");
+        date.dateTime = post.date;
+        date.textContent = post.date;
+        const body = document.createElement("p");
+        body.textContent = isPersian ? post.body_fa : post.body_en;
+        article.append(title, date, body);
+        container.replaceChildren(article);
+      } catch (error) {
+        console.error("Could not load blog posts.", error);
+        container.replaceChildren();
+        const message = document.createElement("p");
+        message.className = "muted";
+        message.textContent = root.lang === "fa"
+          ? "یادداشت‌ها بارگذاری نشدند. برای دیدن نوشته‌ها دوباره تلاش کنید."
+          : "Notes could not be loaded. Please try again later.";
+        container.append(message);
       }
     }
 
