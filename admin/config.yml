@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: arefasadi/portfolio
+  branch: main
+
+media_folder: "assets/img"
+public_folder: "/assets/img"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog"
+    create: true
+    format: "json"
+    fields:
+      - {label: "Title En", name: "title_en", widget: "string"}
+      - {label: "Title Fa", name: "title_fa", widget: "string"}
+      - {label: "Date", name: "date", widget: "date"}
+      - {label: "Body En", name: "body_en", widget: "text"}
+      - {label: "Body Fa", name: "body_fa", widget: "text"}
