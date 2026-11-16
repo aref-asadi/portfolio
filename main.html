@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aref Asadi | PharmD & HealthTech Founder</title>
+  <meta name="description" content="Personal portfolio and 1-page printable resume of Aref Asadi — PharmD Candidate, HealthTech Founder, and AI Product Builder." />
+
+  <!-- External Libraries -->
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans (EN) & Vazirmatn (FA) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Vazirmatn"', 'sans-serif'],
+            fa: ['"Vazirmatn"', 'sans-serif'],
+            en: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth Font & Direction Switching */
+    html[dir="rtl"] body {
+      font-family: 'Vazirmatn', sans-serif;
+    }
+    html[dir="ltr"] body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Minimalist Theme - Muted Slate Palette */
+    :root {
+      --muted-text: #475569;
+      --muted-border: #cbd5e1;
+      --muted-bg: #f8fafc;
+      --muted-hover: #e2e8f0;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.55);
+    }
+
+    /* ON-SCREEN A4 PREVIEW MODE */
+    body.a4-preview-mode {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+    body.a4-preview-mode #web-view-container {
+      display: none !important;
+    }
+    body.a4-preview-mode #print-sheet-container {
+      display: block !important;
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      margin: 0 auto;
+      background: #ffffff !important;
+      color: #0f172a !important;
+      padding: 10mm 12mm;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* STRICT 1-PAGE A4 @MEDIA PRINT STYLES */
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm;
+    }
+
+    @media print {
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 9.2pt !important;
+        line-height: 1.32 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide Web UI, Floating Navbar, Modals, and Web View */
+      .no-print,
+      #web-view-container,
+      #top-navbar,
+      #md-modal {
+        display: none !important;
+      }
+
+      /* Show Dedicated 1-Page ATS Print Container */
+      #print-sheet-container {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        overflow: hidden !important;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: #000000 !important;
+      }
+    }
+
+    /* ==========================================================================
+       MOBILE MENU STYLES
+       ========================================================================== */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-40;
+      pointer-events: none;
+    }
+    #mobile-menu.open {
+      pointer-events: auto;
+    }
+    #mobile-menu-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    #mobile-menu.open #mobile-menu-overlay {
+      opacity: 1;
+    }
+    #mobile-menu-content {
+      position: absolute;
+      top: 3.5rem;
+      right: 0;
+      bottom: 0;
+      width: 80%;
+      max-width: 280px;
+      background: white;
+      dark:bg-slate-900;
+      border-left: 1px solid;
+      border-x-slate-200;
+      border-x-dark-slate-800;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    html[dir="rtl"] #mobile-menu-content {
+      right: auto;
+      left: 0;
+      border-left: none;
+      border-right: 1px solid;
+    }
+    #mobile-menu.open #mobile-menu-content {
+      transform: translateX(0);
+    }
+    #mobile-menu-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .mobile-nav-link {
+      padding: 0.625rem 1rem;
+      border-radius: 0.5rem;
+      text-xs;
+      font-semibold;
+      color-slate-600;
+      dark-color-slate-300;
+      transition-colors;
+    }
+    .mobile-nav-link:hover {
+      background: #eff6ff;
+      dark:bg-slate-800;
+      color: #2563eb;
+      dark-color: #60a5fa;
+    }
+    .mobile-nav-link:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 selection:bg-blue-600 selection:text-white">
+
+  <!-- Floating Control Navbar -->
+  <header id="top-navbar" class="no-print fixed top-0 inset-x-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="sm:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+        <i data-lucide="x" class="w-5 h-5 hidden"></i>
+      </button>
+
+      <!-- Brand Identity -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:block">
+          <p class="font-bold text-sm leading-tight text-slate-900 dark:text-white" data-i18n="name">Aref Asadi</p>
+          <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400" data-i18n="navSubtitle">PharmD & HealthTech Founder</p>
+        </div>
+      </div>
+
+      <!-- Quick Navigation Links (Desktop) -->
+      <nav class="hidden lg:flex items-center gap-4 sm:gap-6 text-xs font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#experience" class="hover:text-slate-900 dark:hover:text-white transition-colors" data-i18n="navExp">Experience</a>
+        <a href="#projects" class="hover:text-slate-900 dark:hover:text-white transition-colors" data-i18n="navProj">Projects</a>
+        <a href="#skills" class="hover:text-slate-900 dark:hover:text-white transition-colors" data-i18n="navSkills">Skills</a>
+        <a href="#education" class="hover:text-slate-900 dark:hover:text-white transition-colors" data-i18n="navEdu">Education</a>
+        <a href="#volunteer" class="hover:text-slate-900 dark:hover:text-white transition-colors" data-i18n="navVol">Leadership</a>
+      </nav>
+
+      <!-- Action Controls: Language, Theme, A4 Preview, Print -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Language Toggle -->
+        <button id="lang-toggle" onclick="toggleLanguage()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg sm:rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Change Language">
+          <i data-lucide="languages" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="lang-label" class="hidden sm:inline">فارسی</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" class="flex items-center justify-center p-2 rounded-lg sm:rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Toggle Dark/Light Mode">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-slate-600"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-slate-500"></i>
+        </button>
+
+        <!-- Toggle 1-Page A4 Preview on Screen -->
+        <button id="preview-toggle-btn" onclick="toggleA4Preview()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+          <i data-lucide="file-check-2" class="w-3.5 h-3.5 text-slate-500"></i>
+          <span id="preview-btn-text" data-i18n="btnA4Preview">1-Page A4</span>
+        </button>
+
+        <!-- Print 1-Page PDF Button -->
+        <button onclick="window.print()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 transition">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+          <span data-i18n="btnPrint">Print PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="open hidden lg:hidden pointer-events-none">
+    <div id="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+    <div id="mobile-menu-content">
+      <div class="mb-4">
+        <div class="flex items-center gap-3">
+          <div>
+            <p class="font-bold text-sm text-slate-900 dark:text-white">Aref Asadi</p>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400">PharmD & HealthTech Founder</p>
+          </div>
+        </div>
+      </div>
+      <nav id="mobile-menu-menu">
+        <a href="#experience" class="mobile-nav-link" data-i18n="navExp">Experience</a>
+        <a href="#projects" class="mobile-nav-link" data-i18n="navProj">Projects</a>
+        <a href="#skills" class="mobile-nav-link" data-i18n="navSkills">Skills</a>
+        <a href="#education" class="mobile-nav-link" data-i18n="navEdu">Education</a>
+        <a href="#volunteer" class="mobile-nav-link" data-i18n="navVol">Leadership</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE WEB PORTFOLIO VIEW (Hidden during Print / A4 Preview)
+       ======================================================================== -->
+  <main id="web-view-container" class="max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 space-y-14">
+
+    <!-- HERO SECTION -->
+    <section class="rounded-xl p-6 sm:p-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div class="space-y-4 max-w-3xl">
+          <!-- Name & Headline -->
+          <div>
+            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white" data-i18n="name">
+              Aref Asadi
+            </h1>
+            <p class="mt-2 text-lg sm:text-xl font-semibold text-slate-600 dark:text-slate-400" data-i18n="headline">
+              PharmD Candidate | HealthTech Founder & AI Product Builder
+            </p>
+          </div>
+
+          <!-- About Bio -->
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="aboutBio">
+            PharmD candidate and HealthTech entrepreneur working at the intersection of pharmacy, artificial intelligence, product management, and software development. Experienced in founding digital health startups and building clinical decision-support tools, educational platforms, and AI-driven solutions to modernize healthcare and pharmacy practice.
+          </p>
+
+          <!-- Contact & Social Pills -->
+          <div class="pt-2 flex flex-wrap items-center gap-2.5 text-xs font-medium">
+            <a href="mailto:rf.aref.asadi@gmail.com" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+              <i data-lucide="mail" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>rf.aref.asadi@gmail.com</span>
+            </a>
+            <a href="tel:+989199959228" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+              <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span dir="ltr">+98 919 995 9228</span>
+            </a>
+            <a href="https://github.com/aref-asadi" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+              <i data-lucide="github" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>github.com/aref-asadi</span>
+            </a>
+            <a href="https://www.linkedin.com/in/aref-asadi/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+              <i data-lucide="linkedin" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>linkedin.com/in/aref-asadi</span>
+            </a>
+            <a href="https://t.me/r_aref_f" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition">
+              <i data-lucide="send" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span dir="ltr">@r_aref_f</span>
+            </a>
+            <span class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100/70 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span data-i18n="location">Tehran, Iran</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Minimal ATS Badge & Avatar Card (Hidden automatically in ATS Print) -->
+        <div class="shrink-0 flex flex-col items-center gap-3 self-center md:self-auto">
+          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-slate-900 p-1">
+            <div class="w-full h-full rounded-[20px] bg-white flex flex-col items-center justify-center text-slate-900 relative overflow-hidden">
+              <span class="text-3xl font-extrabold tracking-wider">AS</span>
+              <span class="text-[10px] uppercase tracking-widest text-slate-500 mt-1">PharmD • AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="secProjects">Featured HealthTech & Web Projects</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Projects Grid -->
+      <div id="web-projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Populated via JS from `resumeData.projects` -->
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE SECTION -->
+    <section id="experience" class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+          <i data-lucide="briefcase" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="secExperience">Professional Experience</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="secExperienceSub">Startup founding, product management, and healthcare innovation</p>
+        </div>
+      </div>
+
+      <div id="web-experience-list" class="space-y-4">
+        <!-- Populated via JS from `resumeData.experiences` -->
+      </div>
+    </section>
+
+    <!-- SKILLS & COMPETENCIES SECTION -->
+    <section id="skills" class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+          <i data-lucide="cpu" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="secSkills">Skills & Core Competencies</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="secSkillsSub">AI development, clinical product management, and technical execution</p>
+        </div>
+      </div>
+
+      <div id="web-skills-grid" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Populated via JS -->
+      </div>
+    </section>
+
+    <!-- EDUCATION & CERTIFICATIONS GRID -->
+    <section id="education" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Education (5 cols) -->
+      <div class="lg:col-span-5 space-y-5">
+        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="secEducation">Education</h2>
+        </div>
+        <div id="web-education-list" class="space-y-4"></div>
+
+        <!-- Languages Card -->
+        <div class="pt-4 space-y-3">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="secLanguages">Languages</h3>
+          <div id="web-languages-list" class="grid grid-cols-3 gap-2.5"></div>
+        </div>
+      </div>
+
+      <!-- Licenses & Certifications (7 cols) -->
+      <div class="lg:col-span-7 space-y-5">
+        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div class="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="secCerts">Licenses & Certifications</h2>
+        </div>
+        <div id="web-certs-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP & VOLUNTEER EXPERIENCE -->
+    <section id="volunteer" class="space-y-6">
+      <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-4">
+        <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+          <i data-lucide="users" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white" data-i18n="secVolunteer">Leadership & Volunteer Experience</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="secVolunteerSub">Community leadership in pharmacy associations and scientific networks</p>
+        </div>
+      </div>
+      <div id="web-volunteer-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <p data-i18n="footerNote">© Aref Asadi — Portfolio & Resume</p>
+      <div class="flex items-center gap-4">
+        <button onclick="window.print()" class="hover:underline" data-i18n="btnPrint">Print PDF</button>
+      </div>
+    </footer>
+
+  </main>
+
+
+  <!-- ========================================================================
+       DEDICATED 1-PAGE A4 ATS-FRIENDLY PRINT CONTAINER
+       (Hidden on normal web view; shown on Print or when A4 Preview is active)
+       ======================================================================== -->
+  <section id="print-sheet-container" class="hidden">
+    <!-- Top Header (No Photo per ATS standard, crisp typography) -->
+    <div class="border-b-2 border-slate-900 pb-2 mb-2.5 flex justify-between items-end gap-4">
+      <div>
+        <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 uppercase" data-i18n="name">Aref Asadi</h1>
+        <p class="text-xs font-bold text-slate-700 mt-0.5" data-i18n="headline">PharmD Candidate | HealthTech Founder & AI Product Builder</p>
+      </div>
+      <div class="text-[9pt] text-slate-700 text-right space-y-0.5 leading-tight" dir="ltr">
+        <div><strong>Email:</strong> rf.aref.asadi@gmail.com | <strong>Tel:</strong> +98 919 995 9228</div>
+        <div><strong>GitHub:</strong> github.com/aref-asadi | <strong>LinkedIn:</strong> linkedin.com/in/aref-asadi</div>
+        <div><strong>Telegram:</strong> t.me/r_aref_f | <span data-i18n="location">Tehran, Iran</span></div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="mb-2.5">
+      <p class="text-[8.8pt] text-slate-800 leading-snug" data-i18n="aboutBio">
+        PharmD candidate and HealthTech entrepreneur working at the intersection of pharmacy, artificial intelligence, product management, and software development. Experienced in founding digital health startups and building clinical decision-support tools, educational platforms, and AI-driven solutions to modernize healthcare and pharmacy practice.
+      </p>
+    </div>
+
+    <!-- 2-Column Executive Layout for 1-Page Density -->
+    <div class="grid grid-cols-12 gap-4">
+      <!-- Main Column (7/12): Experience & Projects -->
+      <div class="col-span-7 space-y-2.5">
+        <!-- Professional Experience -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secExperience">Professional Experience</h2>
+          <div id="print-experience-list" class="space-y-1.5"></div>
+        </div>
+
+        <!-- Key Projects -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secProjects">Selected HealthTech & Web Projects</h2>
+          <div id="print-projects-list" class="space-y-1.5"></div>
+        </div>
+      </div>
+
+      <!-- Side Column (5/12): Education, Skills, Leadership, Certs, Languages -->
+      <div class="col-span-5 space-y-2.5">
+        <!-- Education -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secEducation">Education</h2>
+          <div id="print-education-list" class="space-y-1.5"></div>
+        </div>
+
+        <!-- Core Skills -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secSkills">Core Skills</h2>
+          <div id="print-skills-list" class="space-y-1 text-[8.4pt]"></div>
+        </div>
+
+        <!-- Leadership & Volunteer (Condensed for 1-Page Fit) -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secVolunteer">Leadership & Volunteer</h2>
+          <div id="print-volunteer-list" class="space-y-1 text-[8.4pt]"></div>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5" data-i18n="secCerts">Certifications</h2>
+          <div id="print-certs-list" class="space-y-0.5 text-[8.2pt]"></div>
+        </div>
+
+        <!-- Languages -->
+        <div>
+          <h2 class="text-[9.5pt] font-extrabold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5 mb-1" data-i18n="secLanguages">Languages</h2>
+          <div id="print-languages-list" class="text-[8.4pt] text-slate-800"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       BILINGUAL DATA STORE & APPLICATION LOGIC
+       ======================================================================== -->
+  <script>
+    let currentLang = 'en'; // 'en' or 'fa'
+    let isA4Preview = false;
+
+    const i18nStrings = {
+      en: {
+        name: "Aref Asadi",
+        navSubtitle: "PharmD & HealthTech Founder",
+        navExp: "Experience",
+        navProj: "Projects",
+        navSkills: "Skills",
+        navEdu: "Education",
+        navVol: "Leadership",
+        enLang: "English",
+        faLang: "فارسی",
+        btnA4Preview: "1-Page A4 View",
+        btnExitA4Preview: "Back to Web View",
+        btnPrint: "Print PDF",
+        headline: "PharmD Candidate | HealthTech Founder & AI Product Builder",
+        aboutBio: "PharmD candidate and HealthTech entrepreneur working at the intersection of pharmacy, artificial intelligence, product management, and software development. Experienced in founding digital health startups and building clinical decision-support tools, educational platforms, and AI-driven solutions to modernize healthcare and pharmacy practice.",
+        location: "Tehran, Iran",
+        secProjects: "Featured HealthTech & Web Projects",
+        secExperience: "Professional Experience",
+        secExperienceSub: "Startup founding, product management, and healthcare innovation",
+        secSkills: "Skills & Core Competencies",
+        secSkillsSub: "AI development, clinical product management, and technical execution",
+        secEducation: "Education",
+        secLanguages: "Languages",
+        secCerts: "Licenses & Certifications",
+        secVolunteer: "Leadership & Volunteer Experience",
+        secVolunteerSub: "Community leadership in pharmacy associations and scientific networks",
+        footerNote: "© Aref Asadi — Portfolio & Resume"
+      },
+      fa: {
+        name: "عارف اسدی",
+        navSubtitle: "دکترای داروسازی و بنیان‌گذار هلث‌تک",
+        navExp: "سوابق کاری",
+        navProj: "پروژه‌ها",
+        navSkills: "مهارت‌ها",
+        navEdu: "تحصیلات",
+        navVol: "فعالیت‌های داوطلبانه",
+        enLang: "English",
+        faLang: "فارسی",
+        btnA4Preview: "پیش‌نمایش چاپی A4",
+        btnExitA4Preview: "بازگشت به نمای وب",
+        btnPrint: "چاپ PDF",
+        headline: "دانشجوی دکترای حرفه‌ای داروسازی | بنیان‌گذار هلث‌تک و توسعه‌دهنده محصولات هوش مصنوعی",
+        aboutBio: "دانشجوی دکترای حرفه‌ای داروسازی و کارآفرین حوزه هلث‌تک با تمرکز بر تلاقی داروسازی، هوش مصنوعی، مدیریت محصول و توسعه نرم‌افزار. دارای تجربه در بنیان‌گذاری استارتاپ‌های سلامت دیجیتال و ساخت ابزارهای تصمیم‌یار بالینی، پلتفرم‌های آموزشی و راهکارهای مبتنی بر هوش مصنوعی برای مدرن‌سازی حوزه سلامت و داروسازی.",
+        location: "تهران، ایران",
+        secProjects: "پروژه‌های شاخص هلث‌تک و وب",
+        secExperience: "سوابق شغلی و استارتاپی",
+        secExperienceSub: "بنیان‌گذاری استارتاپ، مدیریت محصول و نوآوری در سلامت دیجیتال",
+        secSkills: "مهارت‌ها و توانمندی‌ها",
+        secSkillsSub: "توسعه هوش مصنوعی، مدیریت محصول بالینی و اجرای فنی پروژه‌ها",
+        secEducation: "تحصیلات",
+        secLanguages: "زبان‌ها",
+        secCerts: "مدارک و گواهینامه‌ها",
+        secVolunteer: "سوابق رهبری و فعالیت‌های داوطلبانه",
+        secVolunteerSub: "مسئولیت‌های اجرایی در انجمن‌های داروسازی و شبکه‌های علمی",
+        footerNote: "© عارف اسدی — رزومه و پورتفولیو"
+      }
+    };
+
+    const resumeData = {
+      projects: [
+        {
+          title: { en: "GeriaPharm", fa: "پلتفرم GeriaPharm" },
+          subtitle: { en: "Clinical Decision Support System for Geriatrics", fa: "سیستم تصمیم‌یار بالینی برای سالمندان " },
+          links: [
+            { label: "geriapharm.arshid.tech", url: "http://geriapharm.arshid.tech/" },
+            { label: "Render Mirror", url: "https://geriapharm.onrender.com/" }
+          ]
+        },
+        {
+          title: { en: "RheumaPharm", fa: "وب‌سایت RheumaPharm (رومافارم)" },
+          subtitle: { en: "Rheumatology Platform", fa: "پلتفرم دارودرمانی روماتولوژی" },
+          links: [
+            { label: "rheumapharm.arshid.tech", url: "https://rheumapharm.arshid.tech" }
+          ]
+        },
+        {
+          title: { en: "Antibiotic Play", fa: "پلتفرم Antibiotic Play (آنتی‌بیوتیک پلی)" },
+          subtitle: { en: "Interactive Medical Education Platform", fa: "پلتفرم تعاملی آموزش آنتی‌بیوتیک‌ها" },
+          links: [
+            { label: "antibioticplay.ir", url: "https://antibioticplay.ir/" }
+          ]
+        },
+        {
+          title: { en: "Hamrah IV", fa: "اپلیکیشن Hamrah IV (همراه IV)" },
+          subtitle: { en: "Clinical Intravenous Therapy Application", fa: "اپلیکیشن بالینی تزریقات وریدی و دارودرمانی" },
+          links: [
+            { label: "Clinical Application", url: "#projects" }
+          ]
+        },
+        {
+          title: { en: "StartupLab & PubLab", fa: "پروژه سایت‌های StartupLab و PubLab" },
+          subtitle: { en: "WordPress Web Platforms & Content Portals", fa: "طراحی و توسعه پلتفرم‌های وردپرسی" },
+          links: [
+            { label: "startuplab.site", url: "https://startuplab.site/" },
+            { label: "publab.startuplab.site", url: "https://publab.startuplab.site/" }
+          ]
+        }
+      ],
+
+      experiences: [
+        {
+          role: { en: "Founder", fa: "بنیان‌گذار (Founder)" },
+          company: { en: "Arshid Tech", fa: "استارتاپ آرشید تک (Arshid Tech)" },
+          type: { en: "Full-Time • Founder", fa: "تمام‌وقت" },
+          period: { en: "Jun 2026 – Present", fa: "خرداد ۱۴۰۵ – اکنون" },
+          desc: {
+            en: "Founded and leading a HealthTech startup building AI-powered clinical web applications and digital pharmacy tools, including GeriaPharm and RheumaPharm.",
+            fa: "راه‌اندازی و راهبری استارتاپ هلث‌تک با تمرکز بر توسعه وب‌اپلیکیشن‌های تخصصی بالینی و ابزارهای هوشمند داروسازی از جمله GeriaPharm و RheumaPharm."
+          },
+          highlight: true
+        },
+        {
+          role: { en: "Project Executor & Content Creator", fa: "مجری پروژه‌ها و تولیدکننده محتوا" },
+          company: { en: "Balenj Startup", fa: "استارتاپ بالنج (Balenj)" },
+          type: { en: "Startup Team", fa: "تیم استارتاپی" },
+          period: { en: "Sep 2025 – May 2026", fa: "پاییز ۱۴۰۴ – بهار ۱۴۰۵" },
+          desc: {
+            en: "Directed end-to-end project execution and produced specialized educational and digital content.",
+            fa: "مدیریت و اجرای پروژه‌ها و تولید محتوای تخصصی."
+          }
+        },
+        {
+          role: { en: "Founder", fa: "بنیان‌گذار" },
+          company: { en: "Hambaha Startup", fa: "استارتاپ هم‌بها (Hambaha)" },
+          type: { en: "Founder", fa: "بنیان‌گذار" },
+          period: { en: "Sep 2024 – Sep 2025", fa: "شهریور ۱۴۰۳ – شهریور ۱۴۰۴" },
+          desc: {
+            en: "Founded Hambaha and spearheaded product strategy, business model validation, and operational execution.",
+            fa: "بنیان‌گذاری استارتاپ هم‌بها و هدایت استراتژی محصول، توسعه کسب‌وکار و عملیات اجرایی."
+          }
+        },
+        {
+          role: { en: "Co-Founder", fa: "هم‌بنیان‌گذار" },
+          company: { en: "MedX Startup", fa: "استارتاپ مدایکس (MedX)" },
+          type: { en: "Co-Founder", fa: "هم‌بنیان‌گذار" },
+          period: { en: "Dec 2023 – Sep 2024", fa: "آذر ۱۴۰۲ – شهریور ۱۴۰۳" },
+          desc: {
+            en: "Co-founded MedX, driving product architecture, cross-functional team leadership, and digital health innovation.",
+            fa: "هم‌بنیان‌گذار استارتاپ مدایکس؛ راهبری محصول، هماهنگی تیم و توسعه راهکارهای نوآورانه سلامت."
+          }
+        },
+        {
+          role: { en: "Associate Product Manager", fa: "مدیر محصول (Associate PM)" },
+          company: { en: "NeuroBI", fa: "نورو بی‌آی (NeuroBI)" },
+          type: { en: "Part-Time", fa: "پاره‌وقت" },
+          period: { en: "Aug 2023 – Nov 2023", fa: "مرداد ۱۴۰۲ – آبان ۱۴۰۲" },
+          desc: {
+            en: "Collaborated on AI and neuro-technology product management, feature prioritization, and user research.",
+            fa: "همکاری در مدیریت محصول، تدوین نقشه راه و تحلیل نیاز کاربران در حوزه هوش مصنوعی و نوروتکنولوژی."
+          }
+        },
+        {
+          role: { en: "Head of Data Science & Pharmacy Associations", fa: "رئیس انجمن علم داده و انجمن داروسازی" },
+          company: { en: "Iran Elites Network", fa: "شبکه نخبگان ایران" },
+          type: { en: "Contract", fa: "قراردادی" },
+          period: { en: "Mar 2023 – Oct 2023", fa: "اسفند ۱۴۰۱ – مهر ۱۴۰۲" },
+          desc: {
+            en: "Led the Data Science and Pharmacy chapters within a national network of Olympiad medalists and top entrance exam ranks.",
+            fa: "سرپرستی انجمن‌های علم داده و داروسازی در شبکه نخبگان علمی و مدال‌آوران المپیاد کشور."
+          }
+        },
+        {
+          role: { en: "Earlier Roles: Market Research, CS50x & Startup Teams", fa: "سایر سوابق: تحقیقات بازار، CS50x و تیم‌های استارتاپی" },
+          company: { en: "ARAS Pharma • CS50x Iran • StuUp • TieUp • Raman Accelerator", fa: "داروسازی آرس • CS50x Iran • استوآپ • تای‌آپ • شتابدهنده رامان" },
+          type: { en: "2022 – 2023", fa: "۱۴۰۰ – ۱۴۰۲" },
+          period: { en: "Feb 2022 – Oct 2023", fa: "بهمن ۱۴۰۰ – مهر ۱۴۰۲" },
+          desc: {
+            en: "Market Researcher @ ARAS Pharmaceutical (Jul–Oct 2023) • Scientific Team Member @ CS50x Iran (Apr–Jul 2023) • Graphic Designer @ StuUp (Jan–Mar 2023) • Team Member @ TieUp Health Talent Startup (Sep 2022–Mar 2023) • PR Assistant @ Raman Accelerator (Feb–Jul 2022).",
+            fa: "محقق بازار در داروسازی آرس (تیر تا مهر ۱۴۰۲) • عضو تیم علمی CS50x ایران (فروردین تا تیر ۱۴۰۲) • طراح گرافیک در StuUp • عضو تیم استارتاپ سلامت TieUp • دستیار روابط عمومی شتابدهنده رامان."
+          }
+        }
+      ],
+
+      skills: [
+        {
+          category: { en: "AI & Tech Development", fa: "توسعه هوش مصنوعی و فناوری" },
+          items: {
+            en: ["AI Application Development", "LLM & Prompt Engineering", "Python Programming", "Data Science & Analytics", "Full-Stack Web Design", "WordPress Architecture", "Microsoft PowerBI"],
+            fa: ["توسعه کاربردی هوش مصنوعی (AI)", "مهندسی پرامپت و مدل‌های زبانی", "برنامه‌نویسی Python", "علم داده و تحلیل داده", "طراحی و توسعه وب‌اپلیکیشن", "توسعه حرفه‌ای وردپرس", "داشبوردسازی با PowerBI"]
+          }
+        },
+        {
+          category: { en: "Product & Startup Leadership", fa: "مدیریت محصول و کارآفرینی" },
+          items: {
+            en: ["Startup Founding & Strategy", "Clinical Product Management", "Pharma Market Research", "Project Execution", "Storytelling & Pitching", "Team Leadership & PR"],
+            fa: ["بنیان‌گذاری و استراتژی استارتاپ", "مدیریت محصول سلامت و بالینی", "تحقیقات بازار دارویی", "مدیریت و اجرای پروژه", "داستان‌سرایی و ارائه محصول", "رهبری تیم و روابط عمومی"]
+          }
+        },
+        {
+          category: { en: "Clinical & Creative Tools", fa: "ابزارهای بالینی، طراحی و محتوا" },
+          items: {
+            en: ["Clinical Decision Support", "Pharmacotherapy Systems", "Medical Gamification", "Adobe Photoshop & Premiere", "Content Strategy", "Microsoft Office & Google Suite"],
+            fa: ["سیستم‌های تصمیم‌یار بالینی", "پلتفرم‌های اطلاعات دارویی", "گیمیفیکیشن آموزش پزشکی", "Adobe Photoshop & Premiere", "استراتژی و تولید محتوا", "مجموعه Office و Google"]
+          }
+        }
+      ],
+
+      education: [
+        {
+          degree: { en: "Doctor of Pharmacy (PharmD)", fa: "دکترای حرفه‌ای داروسازی (PharmD)" },
+          school: { en: "Alborz University of Medical Sciences", fa: "دانشگاه علوم پزشکی البرز" },
+          period: { en: "Sep 2020 – Present", fa: "مهر ۱۳۹۹ – اکنون (دانشجو)" }
+        },
+        {
+          degree: { en: "High School Diploma — Experimental Sciences", fa: "دیپلم علوم تجربی" },
+          school: { en: "Shahid Rajaei NODET (Sampad) High School", fa: "دبیرستان استعدادهای درخشان (سمپاد) شهید رجایی" },
+          period: { en: "Sep 2013 – Aug 2019", fa: "مهر ۱۳۹۲ – شهریور ۱۳۹۸" }
+        }
+      ],
+
+      volunteer: [
+        {
+          role: { en: "Internal Relations Chairperson", fa: "رئیس روابط داخلی (Internal Relations Chair)" },
+          org: { en: "IPhSA Iran (Iranian Pharmaceutical Students' Association)", fa: "کمیته دانشجویی سندیکای صاحبان صنایع داروهای انسانی ایران (ایفسا)" },
+          period: { en: "Mar 2023 – Sep 2024", fa: "اسفند ۱۴۰۱ – شهریور ۱۴۰۳" },
+          note: {
+            en: "Previously Social Media Coordinator, Policy Team Member & Graphic Designer (2020–2023).",
+            fa: "پیش از آن: هماهنگ‌کننده شبکه‌های اجتماعی، عضو تیم پالیسی و طراح گرافیک (۱۳۹۹–۱۴۰۲)."
+          }
+        },
+        {
+          role: { en: "University Representative", fa: "نماینده دانشگاه علوم پزشکی البرز" },
+          org: { en: "Surena Pharmed", fa: "سورنا فارمد (Surena Pharmed)" },
+          period: { en: "Nov 2020 – Sep 2024", fa: "آبان ۱۳۹۹ – شهریور ۱۴۰۳" },
+          note: {
+            en: "Coordinated educational workshops and industry-academia initiatives for nearly 4 years.",
+            fa: "هماهنگی رویدادهای آموزشی و ارتباط صنعت و دانشگاه به مدت نزدیک به ۴ سال."
+          }
+        },
+        {
+          role: { en: "Head of Public Relations", fa: "مدیر روابط عمومی" },
+          org: { en: "Pharmacy Mentoring Office & Students' Research Committee (Alborz UMS)", fa: "دفتر منتورینگ داروسازی و کمیته تحقیقات دانشجویی (ع.پ البرز)" },
+          period: { en: "Jan 2022 – Sep 2023", fa: "دی ۱۴۰۰ – شهریور ۱۴۰۲" },
+          note: {
+            en: "Led student communications, scientific event outreach, and mentoring campaigns.",
+            fa: "مدیریت ارتباطات دانشجویی، اطلاع‌رسانی رویدادهای علمی و کمپین‌های منتورینگ."
+          }
+        },
+        {
+          role: { en: "Executive & Editorial Roles", fa: "مسئولیت‌های اجرایی و نشریات دانشجویی" },
+          org: { en: "USERN • MAIA (Medical AI Assoc.) • ABZUMS English Club • Zange Tafrih", fa: "شبکه USERN • انجمن هوش مصنوعی پزشکی (MAIA) • نشریه زنگ تفریح" },
+          period: { en: "Dec 2021 – Mar 2023", fa: "آذر ۱۴۰۰ – اسفند ۱۴۰۱" },
+          note: {
+            en: "Executive Assistant @ USERN & English Club • Event Assistant @ MAIA • Headmaster @ Zange Tafrih Publication.",
+            fa: "دستیار اجرایی در USERN و کلاب زبان • دستیار رویداد در انجمن هوش مصنوعی پزشکی • مدیرمسئول نشریه زنگ تفریح."
+          }
+        }
+      ],
+
+      certifications: [
+        { title: "CS50's Introduction to Programming with Python (CS50P)", issuer: "Harvard / CS50", date: "Aug 2023" },
+        { title: "CS50's Introduction to Computer Science (CS50x)", issuer: "Harvard / CS50", date: "Jul 2023" },
+        { title: "IBM Data Science Professional Certificate", issuer: "Coursera", date: "Nov 2022" },
+        { title: "AI for Everyone", issuer: "Coursera / DeepLearning.AI", date: "Jun 2022" },
+        { title: "Machine Learning, from Principles to Applications", issuer: "Interdisciplinary Schools", date: "Jun 2022" },
+        { title: "AI: Brain Imaging Data Analysis to Neural Networking", issuer: "GABA Neuroscience Assoc.", date: "Apr 2022" },
+        { title: "Marketing & Sales in Cosmetic Products", issuer: "Surena Pharmed", date: "Feb 2022" },
+        { title: "Novel Management Techniques for Young Leaders", issuer: "Surena Pharmed", date: "Dec 2021" }
+      ],
+
+      languages: [
+        { name: { en: "Persian", fa: "فارسی" }, level: { en: "Native", fa: "زبان مادری" } },
+        { name: { en: "Turkish", fa: "ترکی" }, level: { en: "Native", fa: "زبان مادری" } },
+        { name: { en: "English", fa: "انگلیسی" }, level: { en: "Professional Working", fa: "تسلط حرفه‌ای" } }
+      ]
+    };
+
+    /* ========================================================================
+       RENDER FUNCTIONS (Updates Both Web View & 1-Page Print Sheet)
+       ======================================================================== */
+    function renderAll() {
+      const lang = currentLang;
+      const t = i18nStrings[lang];
+
+      // 1. Update Static i18n Tags
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+      });
+
+      // Keep preview button text accurate
+      const previewBtnText = document.getElementById('preview-btn-text');
+      if (previewBtnText) {
+        previewBtnText.textContent = isA4Preview ? t.btnExitA4Preview : t.btnA4Preview;
+      }
+
+      // 2. Render Web Projects Grid
+      const webProjContainer = document.getElementById('web-projects-grid');
+      webProjContainer.innerHTML = resumeData.projects.map((p, idx) => `
+        <article class="group rounded-2xl p-5 bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-blue-500/60 dark:hover:border-blue-500/50 transition-all shadow-sm hover:shadow-md flex flex-col justify-between gap-4">
+          <div class="space-y-2.5">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                  ${p.title[lang]}
+                </h3>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400">${p.subtitle[lang]}</p>
+              </div>
+              <button onclick="openMdModal(${idx})" class="shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition">
+                ${t.mdBadge}
+              </button>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              ${p.desc[lang]}
+            </p>
+          </div>
+
+          <div class="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5">
+              ${p.tags.map(tag => `
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                  ${tag}
+                </span>
+              `).join('')}
+            </div>
+
+            <!-- Live Links -->
+            <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
+              ${p.links.map(l => `
+                <a href="${l.url}" target="${l.url.startsWith('http') ? '_blank' : '_self'}" rel="noopener" class="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline" dir="ltr">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                  <span>${l.label}</span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // 3. Render Web Experiences
+      const webExpContainer = document.getElementById('web-experience-list');
+      webExpContainer.innerHTML = resumeData.experiences.map(exp => `
+        <div class="rounded-2xl p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="font-bold text-base text-slate-900 dark:text-white">${exp.role[lang]}</h3>
+              <span class="text-slate-400">•</span>
+              <span class="font-semibold text-sm text-slate-700 dark:text-slate-300">${exp.company[lang]}</span>
+            </div>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 self-start sm:self-auto">
+              ${exp.period[lang]}
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            ${exp.desc[lang]}
+          </p>
+        </div>
+      `).join('');
+
+      // 4. Render Web Skills
+      const webSkillsContainer = document.getElementById('web-skills-grid');
+      webSkillsContainer.innerHTML = resumeData.skills.map(sk => `
+        <div class="rounded-2xl p-5 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 space-y-3">
+          <h3 class="font-bold text-sm text-slate-900 dark:text-white">${sk.category[lang]}</h3>
+          <div class="flex flex-wrap gap-2">
+            ${sk.items[lang].map(item => `
+              <span class="px-2.5 py-1 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/60 dark:border-slate-700/60">
+                ${item}
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      // 5. Render Web Education & Languages
+      document.getElementById('web-education-list').innerHTML = resumeData.education.map(ed => `
+        <div class="rounded-2xl p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">${ed.degree[lang]}</h3>
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 shrink-0">${ed.period[lang]}</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">${ed.school[lang]}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('web-languages-list').innerHTML = resumeData.languages.map(l => `
+        <div class="rounded-xl p-3 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-center">
+          <p class="font-bold text-xs text-slate-900 dark:text-white">${l.name[lang]}</p>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">${l.level[lang]}</p>
+        </div>
+      `).join('');
+
+      // 6. Render Web Certifications
+      document.getElementById('web-certs-list').innerHTML = resumeData.certifications.map(c => `
+        <div class="rounded-xl p-3.5 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+          <p class="font-semibold text-xs text-slate-900 dark:text-white leading-snug">${c.title}</p>
+          <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 mt-2 pt-2 border-t border-slate-100 dark:border-slate-800/60">
+            <span>${c.issuer}</span>
+            <span>${c.date}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // 7. Render Web Volunteer
+      document.getElementById('web-volunteer-list').innerHTML = resumeData.volunteer.map(v => `
+        <div class="rounded-2xl p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="font-bold text-sm text-slate-900 dark:text-white">${v.role[lang]}</h3>
+            <span class="text-[11px] font-medium text-slate-500 dark:text-slate-400 shrink-0">${v.period[lang]}</span>
+          </div>
+          <p class="text-xs font-semibold text-slate-700 dark:text-slate-300">${v.org[lang]}</p>
+          <p class="text-xs text-slate-600 dark:text-slate-300">${v.note[lang]}</p>
+        </div>
+      `).join('');
+
+      /* ======================================================================
+         POPULATE 1-PAGE A4 PRINT SHEET
+         ====================================================================== */
+      document.getElementById('print-experience-list').innerHTML = resumeData.experiences.map(exp => `
+        <div class="leading-tight">
+          <div class="flex justify-between items-baseline">
+            <span class="font-bold text-[8.8pt] text-slate-900">${exp.role[lang]} — <span class="font-semibold text-slate-800">${exp.company[lang]}</span></span>
+            <span class="text-[7.8pt] font-medium text-slate-600 shrink-0">${exp.period[lang]}</span>
+          </div>
+          <p class="text-[8.1pt] text-slate-700 mt-0.5">${exp.desc[lang]}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('print-projects-list').innerHTML = resumeData.projects.map(p => `
+        <div class="leading-tight">
+          <div class="flex justify-between items-baseline gap-2">
+            <span class="font-bold text-[8.7pt] text-slate-900">${p.title[lang]} <span class="font-normal text-[7.8pt] text-slate-600">(${p.tags.slice(0, 3).join(', ')})</span></span>
+            <span class="text-[7.6pt] text-slate-600 shrink-0" dir="ltr">${p.links[0].label}</span>
+          </div>
+          <p class="text-[8pt] text-slate-700">${p.desc[lang]}</p>
+        </div>
+      `).join('');
+
+      document.getElementById('print-education-list').innerHTML = resumeData.education.map(ed => `
+        <div class="leading-tight">
+          <div class="font-bold text-[8.6pt] text-slate-900">${ed.degree[lang]}</div>
+          <div class="flex justify-between text-[8pt] text-slate-700">
+            <span>${ed.school[lang]}</span>
+            <span>${ed.period[lang]}</span>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('print-skills-list').innerHTML = resumeData.skills.map(sk => `
+        <div class="leading-tight">
+          <span class="font-bold text-slate-900">${sk.category[lang]}:</span>
+          <span class="text-slate-700"> ${sk.items[lang].join(' • ')}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('print-volunteer-list').innerHTML = resumeData.volunteer.map(v => `
+        <div class="leading-tight">
+          <div class="flex justify-between font-semibold text-slate-900">
+            <span>${v.role[lang]} | ${v.org[lang].split('(')[0]}</span>
+            <span class="text-[7.6pt] text-slate-600 shrink-0">${v.period[lang]}</span>
+          </div>
+          <div class="text-[7.8pt] text-slate-700">${v.note[lang]}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('print-certs-list').innerHTML = resumeData.certifications.slice(0, 6).map(c => `
+        <div class="flex justify-between leading-tight">
+          <span class="font-medium text-slate-800">• ${c.title}</span>
+          <span class="text-[7.5pt] text-slate-600 shrink-0 ml-1">${c.date}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('print-languages-list').innerHTML = resumeData.languages.map(
+        l => `<strong>${l.name[lang]}:</strong> ${l.level[lang]}`
+      ).join(' &nbsp;|&nbsp; ');
+
+      // Refresh Lucide icons
+      if (window.lucide) lucide.createIcons();
+    }
+
+    /* ========================================================================
+       INTERACTIVE CONTROLS: LANGUAGE, THEME, A4 PREVIEW & MD MODAL
+       ======================================================================== */
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'fa' : 'en';
+      const htmlEl = document.documentElement;
+      htmlEl.setAttribute('lang', currentLang);
+      htmlEl.setAttribute('dir', currentLang === 'fa' ? 'rtl' : 'ltr');
+      const t = i18nStrings[currentLang];
+      document.getElementById('lang-label').textContent = currentLang === 'en' ? t.faLang : t.enLang;
+      const previewBtn = document.getElementById('preview-btn-text');
+      if (previewBtn) previewBtn.textContent = document.body.classList.contains('a4-preview-mode') ? t.btnExitA4Preview : t.btnA4Preview;
+      renderAll();
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function toggleA4Preview() {
+      isA4Preview = !isA4Preview;
+      document.body.classList.toggle('a4-preview-mode', isA4Preview);
+      const previewBtn = document.getElementById('preview-btn-text');
+      const t = i18nStrings[currentLang];
+      if (previewBtn) previewBtn.textContent = isA4Preview ? t.btnExitA4Preview : t.btnA4Preview;
+      renderAll();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-menu-overlay');
+      const content = document.getElementById('mobile-menu-content');
+      const btn = document.getElementById('mobile-menu-btn');
+      const isOpen = menu.classList.contains('open');
+      
+      if (isOpen) {
+        menu.classList.remove('open');
+        menu.classList.add('hidden');
+        overlay.style.opacity = '0';
+        content.style.transform = 'translateX(100%)';
+        if (btn) {
+          btn.innerHTML = '<i data-lucide="menu" class="w-5 h-5"></i><i data-lucide="x" class="w-5 h-5 hidden"></i>';
+        }
+      } else {
+        menu.classList.remove('hidden');
+        menu.classList.add('open');
+        overlay.style.opacity = '1';
+        content.style.transform = 'translateX(0)';
+        if (btn) {
+          btn.innerHTML = '<i data-lucide="menu" class="w-5 h-5 hidden"></i><i data-lucide="x" class="w-5 h-5"></i>';
+        }
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function loadProjectIntoModal() {
+      const idx = parseInt(document.getElementById('md-project-select').value, 10);
+      const proj = resumeData.projects[idx];
+      document.getElementById('md-input-en').value = proj.desc.en;
+      document.getElementById('md-input-fa').value = proj.desc.fa;
+    }
+
+    function saveProjectFromModal() {
+      const idx = parseInt(document.getElementById('md-project-select').value, 10);
+      resumeData.projects[idx].desc.en = document.getElementById('md-input-en').value.trim();
+      resumeData.projects[idx].desc.fa = document.getElementById('md-input-fa').value.trim();
+      renderAll();
+      closeMdModal();
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAll();
+    });
+  </script>
+</body>
+</html>
