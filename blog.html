@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Essays and weblog notes by Aref Asadi on HealthTech, pharmacy, startups, and AI software.">
-  <title>Writing & Blog — Aref Asadi</title>
+  <meta name="description" content="Essays and weblog notes by Aref Asadi.">
+  <title>Blog — Aref Asadi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,36 +12,34 @@
 </head>
 <body>
   <div class="shell">
-    <div class="topline">
-      <span class="topline-label"><span class="en">Aref Asadi · Weblog &amp; Essays</span><span class="fa">عارف اسدی · وبلاگ و جستارها</span></span>
-      <div class="controls">
-        <button id="theme-toggle" type="button" aria-pressed="false"><span class="en">Dark mode</span><span class="fa">حالت تاریک</span></button>
-        <button id="language-toggle" type="button" lang="fa" aria-label="Switch language">فارسی</button>
+    <div class="sticky-top">
+      <div class="topline">
+        <span class="topline-label"><span class="en">Aref Asadi · Notebook</span><span class="fa">عارف اسدی · دفتر یادداشت</span></span>
+        <div class="controls">
+          <button id="theme-toggle" type="button" aria-pressed="false"><span class="en">Dark mode</span><span class="fa">حالت تاریک</span></button>
+          <button id="language-toggle" type="button" lang="fa" aria-label="Switch language">فارسی</button>
+        </div>
       </div>
-    </div>
 
-    <header class="top-nav-wrap">
-      <div class="brand-row">
-        <a class="site-brand" href="blog.html"><span class="en">Aref's Notebook</span><span class="fa">دفتر یادداشت‌های عارف</span></a>
-        <a href="index.html" style="font-size: 11px;"><span class="en">← Back to main site &amp; CV</span><span class="fa">بازگشت به سایت اصلی و رزومه →</span></a>
-      </div>
-      <p class="subtitle" style="margin-top: 2px;">
-        <span class="en">An independent space for essays on clinical AI, pharmacy, startups, and building software.</span>
-        <span class="fa">فضایی مستقل برای نوشته‌ها و جستارها درباره هوش مصنوعی بالینی، داروسازی، استارتاپ و ساخت نرم‌افزار.</span>
-      </p>
-    </header>
+      <header class="top-nav-wrap">
+        <div class="brand-row">
+          <a class="site-brand" href="blog.html"><span class="en">Aref's Notebook</span><span class="fa">دفتر یادداشت‌های عارف</span></a>
+          <a href="index.html" style="font-size: 11px;"><span class="en">← Main site</span><span class="fa">بازگشت به سایت اصلی →</span></a>
+        </div>
+      </header>
+    </div>
 
     <main class="pg-main">
       <section>
         <div id="blog-list-container" aria-live="polite">
-          <p class="muted"><span class="en">Loading essays…</span><span class="fa">در حال بارگذاری نوشته‌ها…</span></p>
+          <p class="muted"><span class="en">Loading…</span><span class="fa">در حال بارگذاری…</span></p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span><a href="index.html"><span class="en">← Aref Asadi (Home)</span><span class="fa">عارف اسدی (خانه) →</span></a></span>
-      <span><a href="admin/index.html"><span class="en">+ Write new post (Sveltia CMS)</span><span class="fa">+ نوشتن یادداشت جدید (Sveltia CMS)</span></a></span>
+      <span><a href="index.html"><span class="en">← Aref Asadi</span><span class="fa">عارف اسدی →</span></a></span>
+      <span><span class="en">© 2026</span><span class="fa">© ۱۴۰۵</span></span>
     </footer>
   </div>
 
@@ -53,23 +51,19 @@
       const isPersian = document.documentElement.lang === "fa";
 
       if (!posts.length) {
-        container.innerHTML = `<p class="muted">${isPersian ? "هنوز هیچ نوشته‌ای منتشر نشده است." : "No essays published yet."}</p>`;
+        container.innerHTML = `<p class="muted">${isPersian ? "هنوز هیچ نوشته‌ای منتشر نشده است." : "No posts yet."}</p>`;
         return;
       }
 
       container.innerHTML = posts.map(function (post) {
         const title = window.SiteBlog.escapeHtml(isPersian ? post.title_fa : post.title_en);
         const excerpt = window.SiteBlog.escapeHtml(window.SiteBlog.makeExcerpt(post, isPersian));
-        const date = window.SiteBlog.escapeHtml(post.date);
-        const category = window.SiteBlog.escapeHtml(post.category);
+        const formattedDate = window.SiteBlog.escapeHtml(window.SiteBlog.formatDisplayDate(post.date, isPersian));
         return `
           <article class="essay-item">
             <div class="essay-item-head">
-              <div>
-                <a class="essay-title-link" href="post.html?slug=${encodeURIComponent(post.slug)}">${title}</a>
-                <span class="essay-badge">${category}</span>
-              </div>
-              <time datetime="${date}">${date}</time>
+              <a class="essay-title-link" href="post.html?slug=${encodeURIComponent(post.slug)}">${title}</a>
+              <span class="entry-meta"><time datetime="${window.SiteBlog.escapeHtml(post.date)}">${formattedDate}</time></span>
             </div>
             <p class="essay-excerpt">${excerpt}</p>
           </article>
