@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Essays and weblog notes by Aref Asadi on HealthTech, pharmacy, startups, and AI software.">
+  <title>Essays & Blog — Aref Asadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="topline">
+      <span class="topline-label"><span class="en">A small corner of the web</span><span class="fa">گوشه‌ای کوچک از وب</span></span>
+      <div class="controls">
+        <button id="theme-toggle" type="button" aria-pressed="false"><span class="en">Dark mode</span><span class="fa">حالت تاریک</span></button>
+        <button id="language-toggle" type="button" lang="fa" aria-label="Switch language">فارسی</button>
+      </div>
+    </div>
+
+    <div class="pg-grid">
+      <aside class="pg-rail">
+        <a class="site-brand" href="index.html"><span class="en">Aref Asadi</span><span class="fa">عارف اسدی</span></a>
+        <nav class="pg-nav" aria-label="Site sections">
+          <a href="index.html"><span class="en">Home / About</span><span class="fa">خانه / درباره</span></a>
+          <a href="blog.html"><span class="en">Essays &amp; Blog</span><span class="fa">مقالات و وبلاگ</span></a>
+          <a href="projects.html"><span class="en">Projects</span><span class="fa">پروژه‌ها</span></a>
+          <a href="experience.html"><span class="en">Experience</span><span class="fa">سوابق کاری</span></a>
+          <a href="education.html"><span class="en">Education</span><span class="fa">تحصیلات و مدارک</span></a>
+          <a href="skills.html"><span class="en">Skills &amp; Roles</span><span class="fa">مهارت‌ها و فعالیت‌ها</span></a>
+          <a href="contact.html"><span class="en">Contact</span><span class="fa">تماس</span></a>
+        </nav>
+        <p class="pg-rail-note">
+          <span class="en">Managed via Sveltia CMS. New posts published in /admin appear here automatically.</span>
+          <span class="fa">مدیریت‌شده با Sveltia CMS. یادداشت‌های جدید در /admin به‌صورت خودکار اینجا منتشر می‌شوند.</span>
+        </p>
+      </aside>
+
+      <main class="pg-main">
+        <header class="page-header">
+          <h1><span class="en">Essays &amp; Weblog</span><span class="fa">مقالات و یادداشت‌های وبلاگ</span></h1>
+          <p class="subtitle"><span class="en">Occasional essays on pharmacy, clinical AI, product building, and how things work</span><span class="fa">جستارها و یادداشت‌هایی درباره داروسازی، هوش مصنوعی بالینی، ساخت محصول و چگونگی کارکرد چیزها</span></p>
+        </header>
+
+        <section>
+          <div id="blog-list-container" aria-live="polite">
+            <p class="muted"><span class="en">Loading essays…</span><span class="fa">در حال بارگذاری نوشته‌ها…</span></p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 Aref Asadi</span>
+      <span><a href="admin/index.html"><span class="en">+ Write new post (Sveltia CMS)</span><span class="fa">+ نوشتن یادداشت جدید (Sveltia CMS)</span></a></span>
+    </footer>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    async function renderBlogArchive() {
+      const container = document.getElementById("blog-list-container");
+      const posts = await window.SiteBlog.fetchAllBlogPosts();
+      const isPersian = document.documentElement.lang === "fa";
+
+      if (!posts.length) {
+        container.innerHTML = `<p class="muted">${isPersian ? "هنوز هیچ نوشته‌ای منتشر نشده است." : "No essays published yet."}</p>`;
+        return;
+      }
+
+      container.innerHTML = posts.map(function (post) {
+        const title = window.SiteBlog.escapeHtml(isPersian ? post.title_fa : post.title_en);
+        const excerpt = window.SiteBlog.escapeHtml(window.SiteBlog.makeExcerpt(post, isPersian));
+        const date = window.SiteBlog.escapeHtml(post.date);
+        const category = window.SiteBlog.escapeHtml(post.category);
+        return `
+          <article class="essay-item">
+            <div class="essay-item-head">
+              <div>
+                <a class="essay-title-link" href="post.html?slug=${encodeURIComponent(post.slug)}">${title}</a>
+                <span class="essay-badge">${category}</span>
+              </div>
+              <time datetime="${date}">${date}</time>
+            </div>
+            <p class="essay-excerpt">${excerpt}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderBlogArchive();
+    window.addEventListener("site:languagechange", renderBlogArchive);
+  </script>
+</body>
+</html>

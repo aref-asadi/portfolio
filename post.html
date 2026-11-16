@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Essay by Aref Asadi">
+  <title>Essay — Aref Asadi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="shell">
+    <div class="topline">
+      <span class="topline-label"><span class="en">A small corner of the web</span><span class="fa">گوشه‌ای کوچک از وب</span></span>
+      <div class="controls">
+        <button id="theme-toggle" type="button" aria-pressed="false"><span class="en">Dark mode</span><span class="fa">حالت تاریک</span></button>
+        <button id="language-toggle" type="button" lang="fa" aria-label="Switch language">فارسی</button>
+      </div>
+    </div>
+
+    <div class="pg-grid">
+      <aside class="pg-rail">
+        <a class="site-brand" href="index.html"><span class="en">Aref Asadi</span><span class="fa">عارف اسدی</span></a>
+        <nav class="pg-nav" aria-label="Site sections">
+          <a href="index.html"><span class="en">Home / About</span><span class="fa">خانه / درباره</span></a>
+          <a href="blog.html"><span class="en">Essays &amp; Blog</span><span class="fa">مقالات و وبلاگ</span></a>
+          <a href="projects.html"><span class="en">Projects</span><span class="fa">پروژه‌ها</span></a>
+          <a href="experience.html"><span class="en">Experience</span><span class="fa">سوابق کاری</span></a>
+          <a href="education.html"><span class="en">Education</span><span class="fa">تحصیلات و مدارک</span></a>
+          <a href="skills.html"><span class="en">Skills &amp; Roles</span><span class="fa">مهارت‌ها و فعالیت‌ها</span></a>
+          <a href="contact.html"><span class="en">Contact</span><span class="fa">تماس</span></a>
+        </nav>
+        <p class="pg-rail-note">
+          <a href="blog.html"><span class="en">← All essays</span><span class="fa">همه مقالات →</span></a>
+        </p>
+      </aside>
+
+      <main class="pg-main">
+        <article id="single-post-container" aria-live="polite">
+          <p class="muted"><span class="en">Loading essay…</span><span class="fa">در حال بارگذاری مقاله…</span></p>
+        </article>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 Aref Asadi</span>
+      <span><a href="blog.html"><span class="en">← Back to Essays</span><span class="fa">بازگشت به وبلاگ →</span></a> · <a href="admin/index.html"><span class="en">CMS</span><span class="fa">مدیریت وبلاگ</span></a></span>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    async function renderSinglePost() {
+      const container = document.getElementById("single-post-container");
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      const isPersian = document.documentElement.lang === "fa";
+
+      const posts = await window.SiteBlog.fetchAllBlogPosts();
+      const post = slug ? posts.find((p) => p.slug === slug) : posts[0];
+
+      if (!post) {
+        container.innerHTML = `
+          <header class="page-header">
+            <h1>${isPersian ? "مقاله پیدا نشد" : "Essay not found"}</h1>
+          </header>
+          <p class="muted">${isPersian ? "یادداشت مورد نظر وجود ندارد یا هنوز منتشر نشده است." : "The requested essay does not exist or has not been published yet."}</p>
+          <p><a href="blog.html">${isPersian ? "بازگشت به فهرست نوشته‌ها ←" : "← Return to all essays"}</a></p>
+        `;
+        return;
+      }
+
+      const title = isPersian ? post.title_fa : post.title_en;
+      const bodyMarkdown = isPersian ? post.body_fa : post.body_en;
+      const renderedHtml = window.SiteBlog.renderSimpleMarkdown(bodyMarkdown);
+
+      document.title = `${title} — Aref Asadi`;
+
+      container.innerHTML = `
+        <header class="page-header">
+          <h1>${window.SiteBlog.escapeHtml(title)}</h1>
+          <p class="subtitle">
+            <time datetime="${window.SiteBlog.escapeHtml(post.date)}">${window.SiteBlog.escapeHtml(post.date)}</time>
+            · <span>${window.SiteBlog.escapeHtml(post.category)}</span>
+          </p>
+        </header>
+        <div class="essay-body">${renderedHtml}</div>
+      `;
+    }
+
+    renderSinglePost();
+    window.addEventListener("site:languagechange", renderSinglePost);
+  </script>
+</body>
+</html>
