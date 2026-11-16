@@ -1,0 +1,515 @@
+:root {
+  color-scheme: light;
+  --paper: #fbfaf6;
+  --ink: #24231f;
+  --muted: #77746c;
+  --rule: #dedbd1;
+  --link: #315d8a;
+  --accent: #bd5b36;
+  --soft: #f1efe8;
+  --focus: #bd5b36;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #171815;
+  --ink: #e8e5dc;
+  --muted: #aaa69b;
+  --rule: #393a34;
+  --link: #91b9e2;
+  --accent: #e69b76;
+  --soft: #22231f;
+  --focus: #e69b76;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px/1.85 "JetBrains Mono", monospace;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+html[lang="fa"] body {
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Paul Graham inspired Web 1.0 layout with sidebar navigation + narrow reading column */
+.shell {
+  width: min(100% - 36px, 840px);
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.topline-label {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[lang="fa"] .topline-label {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.controls {
+  display: flex;
+  gap: 7px;
+}
+
+.controls button {
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 4px 9px;
+  background: var(--soft);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+
+.controls button:hover {
+  border-color: var(--accent);
+}
+
+.pg-grid {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 600px);
+  gap: 36px;
+  padding-top: 28px;
+  align-items: start;
+}
+
+/* Classic left/right index rail like paulgraham.com */
+.pg-rail {
+  position: sticky;
+  top: 24px;
+  border-inline-end: 1px solid var(--rule);
+  padding-inline-end: 18px;
+}
+
+.site-brand {
+  display: block;
+  margin-bottom: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.04em;
+}
+
+html[lang="fa"] .site-brand {
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+.site-brand:hover {
+  color: var(--accent);
+}
+
+.pg-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.pg-nav a {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--link);
+}
+
+.pg-nav a:hover {
+  background: var(--soft);
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.pg-nav a[aria-current="page"] {
+  background: var(--soft);
+  color: var(--ink);
+  font-weight: 600;
+  border-inline-start: 2px solid var(--accent);
+}
+
+.pg-rail-note {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--rule);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* Main essay/content column */
+.pg-main {
+  min-width: 0;
+}
+
+.page-header {
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(22px, 4.5vw, 30px);
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+}
+
+html[lang="fa"] h1 {
+  letter-spacing: 0;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 28px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+h2:first-child {
+  margin-top: 0;
+}
+
+h2 .number {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+h3 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.muted,
+time {
+  color: var(--muted);
+}
+
+.entry {
+  position: relative;
+  margin: 0 0 18px;
+  padding-inline-start: 16px;
+}
+
+.entry::before {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: 0;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  content: "";
+}
+
+.entry-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 3px 12px;
+}
+
+.entry-meta {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.entry p {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+}
+
+.entry ul {
+  margin: 5px 0 0;
+  padding-inline-start: 18px;
+  font-size: 12.5px;
+}
+
+.entry li {
+  margin: 3px 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 2px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.plain-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-list li {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.plain-list li::before {
+  margin-inline-end: 8px;
+  color: var(--accent);
+  content: "—";
+}
+
+/* Web 1.0 classic data table */
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-size: 12px;
+}
+
+.retro-table th,
+.retro-table td {
+  padding: 7px 9px;
+  border: 1px solid var(--rule);
+  text-align: start;
+  vertical-align: top;
+}
+
+.retro-table th {
+  background: var(--soft);
+  font-weight: 600;
+}
+
+/* Blog / Essays list & article reading view */
+.essay-item {
+  padding: 12px 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.essay-item:first-child {
+  padding-top: 0;
+}
+
+.essay-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.essay-title-link {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.essay-excerpt {
+  margin: 5px 0 0;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.essay-badge {
+  display: inline-block;
+  margin-inline-start: 6px;
+  padding: 1px 5px;
+  border: 1px solid var(--rule);
+  background: var(--soft);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* Essay body (Paul Graham style long-form reading) */
+.essay-body {
+  margin-top: 18px;
+  font-size: 13.5px;
+}
+
+html[lang="fa"] .essay-body {
+  font-size: 15px;
+}
+
+.essay-body h2 {
+  margin-top: 26px;
+}
+
+.essay-body blockquote {
+  margin: 16px 0;
+  padding: 8px 14px;
+  border-inline-start: 2px solid var(--accent);
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.essay-body pre,
+.essay-body code {
+  background: var(--soft);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.essay-body code {
+  padding: 1px 4px;
+}
+
+.essay-body pre {
+  padding: 10px 12px;
+  overflow-x: auto;
+}
+
+.essay-body pre code {
+  border: none;
+  padding: 0;
+}
+
+.essay-body img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  margin: 12px 0;
+}
+
+.callout-box {
+  margin: 18px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  background: var(--soft);
+  font-size: 12.5px;
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 42px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.fa {
+  display: none;
+}
+
+html[lang="fa"] .en {
+  display: none;
+}
+
+html[lang="fa"] .fa {
+  display: initial;
+}
+
+@media (max-width: 720px) {
+  .pg-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 18px;
+  }
+
+  .pg-rail {
+    position: static;
+    border-inline-end: none;
+    border-bottom: 1px solid var(--rule);
+    padding-inline-end: 0;
+    padding-bottom: 14px;
+  }
+
+  .pg-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px 8px;
+  }
+
+  .pg-rail-note {
+    display: none;
+  }
+
+  .entry-head {
+    display: block;
+  }
+
+  .entry-meta {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    transition: none;
+  }
+}

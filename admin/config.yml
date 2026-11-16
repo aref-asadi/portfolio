@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: arefasadi/portfolio
+  repo: aref-asadi/portfolio
   branch: main
 
 media_folder: "assets/img"
@@ -8,13 +8,27 @@ public_folder: "/assets/img"
 
 collections:
   - name: "blog"
-    label: "Blog Posts"
+    label: "Blog Posts & Essays"
+    label_singular: "Essay"
     folder: "blog"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: "json"
+    summary: "{{date}} — {{title_en}} ({{title_fa}})"
+    sortable_fields: ["date", "title_en"]
     fields:
-      - {label: "Title En", name: "title_en", widget: "string"}
-      - {label: "Title Fa", name: "title_fa", widget: "string"}
-      - {label: "Date", name: "date", widget: "date"}
-      - {label: "Body En", name: "body_en", widget: "text"}
-      - {label: "Body Fa", name: "body_fa", widget: "text"}
+      - { label: "Title (English)", name: "title_en", widget: "string", required: true }
+      - { label: "عنوان (فارسی)", name: "title_fa", widget: "string", required: true }
+      - { label: "Publish Date", name: "date", widget: "date", format: "YYYY-MM-DD", required: true }
+      - { label: "Published", name: "published", widget: "boolean", default: true }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["Essay", "HealthTech", "AI & Software", "Startups", "Pharmacy", "Notes"],
+          default: "Essay"
+        }
+      - { label: "Summary (English)", name: "summary_en", widget: "text", required: false }
+      - { label: "خلاصه کوتاه (فارسی)", name: "summary_fa", widget: "text", required: false }
+      - { label: "Body (English - Markdown)", name: "body_en", widget: "markdown", required: true }
+      - { label: "متن کامل (فارسی - Markdown)", name: "body_fa", widget: "markdown", required: true }
